@@ -5,15 +5,13 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as ImagePicker from 'expo-image-picker';
 import RBSheet from "react-native-raw-bottom-sheet";
 import moment from 'moment';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function CreateActivity({ navigation }) {
 
     const refRBSheet = useRef();
-
-
     //
     const [image, setImage] = useState(null);
-
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -24,7 +22,6 @@ export default function CreateActivity({ navigation }) {
             }
         })();
     }, []);
-
     const pickImageLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -49,7 +46,6 @@ export default function CreateActivity({ navigation }) {
             setImage(result.uri);
         }
     };
-
     const ModalPicker = () => {
         return <View style={{
             flex: 1,
@@ -139,34 +135,34 @@ export default function CreateActivity({ navigation }) {
             </View>
         </View>
     }
-
     //
-
-
-
     const day = new Date();
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [isDatePickerVisible2, setDatePickerVisibility2] = useState(false);
+    const [isDatePickerVisible3, setDatePickerVisibility3] = useState(false);
     const [dateChoose, setDateChoose] = useState(day)
     const [dateChoose2, setDateChoose2] = useState(day)
+    const [dateChoose3, setDateChoose3] = useState(day)
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
-
     const hideDatePicker = () => {
         setDatePickerVisibility(false);
     };
     const showDatePicker2 = () => {
         setDatePickerVisibility2(true);
     };
-
     const hideDatePicker2 = () => {
         setDatePickerVisibility2(false);
     };
-
-
+    const showDatePicker3 = () => {
+        setDatePickerVisibility3(true);
+    };
+    const hideDatePicker3 = () => {
+        setDatePickerVisibility3(false);
+    };
     const handleConfirm = (date) => {
         setDateChoose(date);
         hideDatePicker();
@@ -175,8 +171,27 @@ export default function CreateActivity({ navigation }) {
         setDateChoose2(date);
         hideDatePicker2();
     };
+    const handleConfirm3 = (date) => {
+        setDateChoose3(date);
+        hideDatePicker3();
+    };
 
     let [planList, setPlanList] = useState([]);
+    const onAddPlan = () => {
+        setPlanList(planList.concat(renderPlan()));
+    }
+    const onRemovePlan = (key) => {
+        let plan1 = [...planList];
+        const plans = plan1.splice(0, key);
+        setPlanList(plans);
+    }
+
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Apple', value: 'apple' },
+        { label: 'Banana', value: 'banana' }
+    ]);
 
     const renderPlan = () => {
         return <View key={planList.length} style={{
@@ -193,15 +208,39 @@ export default function CreateActivity({ navigation }) {
                 top: 5,
                 right: 10
             }} onPress={() => {
-              onRemovePlan(planList.length);
+                onRemovePlan(planList.length);
             }}>
-                    <Ionicons name="ios-close-circle-outline" size={40} color="black" />
-                </Pressable>
+                <Ionicons name="ios-close-circle-outline" size={40} color="black" />
+            </Pressable>
             <Text style={{
                 marginBottom: 10,
                 fontSize: 15,
                 fontWeight: 'bold'
-            }}>Kế hoạch {planList.length +1}</Text>
+            }}>Hoạt động {planList.length + 1}</Text>
+
+            <View style={{ marginTop: 10 }}>
+                <Text>Hoạt động</Text>
+                <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={setOpen}
+                    setValue={setValue}
+                    setItems={setItems}
+                    style={{
+                        borderColor: 'gray',
+                        width: 300,
+                        height: 40,
+                        borderWidth: 1,
+                        paddingLeft: 15,
+                        paddingRight: 20,
+                        marginTop: 10,
+                        // marginLeft: 20,
+                        borderRadius: 10
+                    }}
+                />
+            </View>
+
             <Text>Địa điểm</Text>
             <TextInput
                 style={{
@@ -222,7 +261,7 @@ export default function CreateActivity({ navigation }) {
                 flexDirection: 'row',
                 marginTop: 10
             }}>
-                
+
                 <View>
                     <Text>Thời gian</Text>
                     <Pressable onPress={showDatePicker2}>
@@ -264,31 +303,11 @@ export default function CreateActivity({ navigation }) {
                             // marginLeft: 20,
                             borderRadius: 10,
                         }}
-                        placeholder="Nhập số tiền đã kêu gọi"
+                        placeholder="Nhập số tiền"
                         keyboardType="numeric"
                     />
                 </View>
 
-            </View>
-            <View style={{
-                marginTop: 10,
-                
-            }}>
-                <Text>Mô tả chi tiết</Text>
-                <TextInput
-                    style={{
-                        borderColor: 'gray',
-                        width: 300,
-                        height: 40,
-                        borderWidth: 1,
-                        paddingLeft: 15,
-                        paddingRight: 20,
-                        marginTop: 10,
-                        // marginLeft: 20,
-                        borderRadius: 10
-                    }}
-                    placeholder="Nhập mô tả"
-                />
             </View>
             <View style={{
                 marginTop: 10,
@@ -313,151 +332,14 @@ export default function CreateActivity({ navigation }) {
         </View>
     }
 
-    const onAddPlan = (event) => {
-        // console.log(planList);
-        
 
-        setPlanList(planList.concat(renderPlan()));
-        console.log(planList.length);
-    }
-    const onRemovePlan = ( key) => {
-        // console.log('asdasd' ,planList.length);
-        // alert(key)
-        let plan1= [...planList];
-        const plans = plan1.splice(0,key);
-        // console.log(plans);
-        setPlanList(plans);
-        // return;
-      }
+
 
 
     return (
         <View>
             <StatusBar backgroundColor="#013459" />
             <ScrollView>
-                {/* <View style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <Text style={{
-                        paddingTop: 10,
-                        fontWeight: "bold",
-                        paddingBottom: 10
-                    }}> <AntDesign name="user" size={24} /> Thông tin cá nhân</Text>
-                </View>
-                <View style={{
-                    backgroundColor: '#fff',
-                    margin: 10,
-                    marginRight: 12,
-                    borderRadius: 10,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                        width: 0,
-                        height: 5,
-                    },
-                    shadowOpacity: 0.34,
-                    shadowRadius: 6.27,
-
-                    elevation: 10,
-                }}>
-
-
-                    <View style={{
-                        margin: 20
-                    }} s>
-                        <View style={{
-                            marginBottom: 10
-                        }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <MaterialIcons name="drive-file-rename-outline" size={24} color="orange" />
-                                <Text style={{
-                                    marginLeft: 5
-                                }}>
-                                    Tên người đại diện <Text style={{ color: '#d32f2f' }}>*</Text>
-                                </Text>
-                            </View>
-
-                            <TextInput
-                                style={{
-                                    borderColor: 'gray',
-                                    width: 350,
-                                    height: 40,
-                                    borderWidth: 1,
-                                    paddingLeft: 15,
-                                    paddingRight: 20,
-                                    marginTop: 10,
-                                    borderRadius: 10
-                                }}
-                                placeholder="Nhập tên người đại diện"
-                            />
-                        </View>
-                        <View style={{
-                            marginBottom: 10
-                        }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Feather name="phone" size={24} color="blue" />
-                                <Text style={{
-                                    marginLeft: 5
-                                }}>
-                                    Số điện thoại <Text style={{ color: '#d32f2f' }}>*</Text>
-                                </Text>
-                            </View>
-                            <TextInput
-                                style={{
-                                    borderColor: 'gray',
-                                    width: 350,
-                                    height: 40,
-                                    borderWidth: 1,
-                                    paddingLeft: 15,
-                                    paddingRight: 20,
-                                    marginTop: 10,
-                                    borderRadius: 10
-                                }}
-                                placeholder="Nhập số điện thoại"
-                                keyboardType="numeric"
-                            />
-                        </View>
-                        <View style={{
-                            marginBottom: 10
-                        }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Ionicons name="md-location-outline" size={24} color="red" />
-                                <Text style={{
-                                    marginLeft: 5
-                                }}>
-                                    Địa chỉ <Text style={{ color: '#d32f2f' }}>*</Text>
-                                </Text>
-                            </View>
-                            <TextInput
-                                style={{
-                                    borderColor: 'gray',
-                                    width: 350,
-                                    height: 40,
-                                    borderWidth: 1,
-                                    paddingLeft: 15,
-                                    paddingRight: 20,
-                                    marginTop: 10,
-                                    borderRadius: 10
-                                }}
-                                placeholder="Nhập địa chỉ"
-                            />
-                        </View>
-                    </View>
-                </View> */}
-                {/* <View style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <Text style={{
-                        paddingTop: 10,
-                        fontWeight: "bold",
-                        paddingBottom: 10
-                    }}> <AntDesign name="file1" size={24} /> Thông tin chiến dịch</Text>
-                </View> */}
                 <View style={{
                     backgroundColor: '#fff',
                     margin: 10,
@@ -526,35 +408,73 @@ export default function CreateActivity({ navigation }) {
                                 placeholder="Nhập địa điểm thực hiện chiến dịch"
                             />
                         </View>
+
                         <View style={{
                             marginBottom: 10
                         }}>
                             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <Foundation name="clipboard-notes" size={24} color="black" />
+                                <SimpleLineIcons name="note" size={24} color="#000" />
                                 <Text style={{
-                                    marginLeft: 10
+                                    marginLeft: 5
                                 }}>
-                                    Mô tả chiến dịch<Text style={{ color: '#d32f2f' }}></Text>
+                                    Kế hoạch của chiến dịch <Text style={{ color: '#d32f2f' }}>*</Text>
                                 </Text>
                             </View>
                             <TextInput
-                                multiline={true}
-                                numberOfLines={100}
                                 style={{
                                     borderColor: 'gray',
                                     width: 350,
-                                    height: 130,
+                                    height: 40,
                                     borderWidth: 1,
                                     paddingLeft: 15,
                                     paddingRight: 20,
-                                    // marginLeft: 20,
-                                    borderRadius: 10,
-                                    textAlignVertical: 'top',
                                     marginTop: 10,
-                                    paddingTop: 10
+                                    // marginLeft: 20,
+                                    borderRadius: 10
                                 }}
-                                placeholder="Nhập mô tả về chiến dịch"
+                                placeholder="Nhập kế hoạch"
                             />
+                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                                <SimpleLineIcons name="note" size={24} color="#000" />
+                                <Text style={{
+                                    marginLeft: 5
+                                }}>
+                                    Chi tiết kế hoạch
+                                </Text>
+                            </View>
+                            {/* {renderPlan()} */}
+                            {planList}
+                            <View style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginBottom: 20
+                            }}>
+                                <Pressable style={{
+                                    marginTop: 10,
+                                    height: 40,
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    backgroundColor: '#024f87',
+                                    width: 150,
+                                    borderRadius: 5
+                                }} onPress={() => {
+                                    onAddPlan();
+                                }}>
+
+                                    <SimpleLineIcons name="plus" size={24} color="white" />
+                                    <Text style={{
+                                        textAlign: 'center',
+                                        marginLeft: 5,
+                                        color: 'white'
+                                    }}>
+                                        Thêm hoạt động
+                                    </Text>
+                                </Pressable>
+                            </View>
                         </View>
                         <View style={{
                             marginBottom: 10
@@ -587,47 +507,33 @@ export default function CreateActivity({ navigation }) {
                             marginBottom: 10
                         }}>
                             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <SimpleLineIcons name="note" size={24} color="#000" />
+                                <Foundation name="clipboard-notes" size={24} color="black" />
                                 <Text style={{
-                                    marginLeft: 5
+                                    marginLeft: 10
                                 }}>
-                                    Kế hoạch của chiến dịch <Text style={{ color: '#d32f2f' }}>*</Text>
+                                    Mô tả chiến dịch<Text style={{ color: '#d32f2f' }}></Text>
                                 </Text>
                             </View>
-                            {/* {renderPlan()} */}
-                            {planList}
-                            <View style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginBottom: 20
-                            }}>
-                                <Pressable style={{
+                            <TextInput
+                                multiline={true}
+                                numberOfLines={100}
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 350,
+                                    height: 130,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    // marginLeft: 20,
+                                    borderRadius: 10,
+                                    textAlignVertical: 'top',
                                     marginTop: 10,
-                                    height: 40,
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    backgroundColor: '#024f87',
-                                    width: 150,
-                                    borderRadius: 5
-                                }} onPress={() => {
-                                    onAddPlan();
-                                }}>
-
-                                    <SimpleLineIcons name="plus" size={24} color="white" />
-                                    <Text style={{
-                                        textAlign: 'center',
-                                        marginLeft: 5,
-                                        color: 'white'
-                                    }}>
-                                        Thêm kế hoạch
-                                    </Text>
-                                </Pressable>
-                            </View>
+                                    paddingTop: 10
+                                }}
+                                placeholder="Nhập mô tả về chiến dịch"
+                            />
                         </View>
+
                         <View style={{
                             marginBottom: 10
                         }}>
@@ -641,7 +547,7 @@ export default function CreateActivity({ navigation }) {
                                 }}>
                                     Ngày bắt đầu chiến dịch:
                                 </Text>
-                                <Pressable>
+                                <Pressable onPress={showDatePicker3}>
                                     <Text style={{
                                         borderWidth: 1,
                                         borderColor: 'gray',
@@ -652,10 +558,16 @@ export default function CreateActivity({ navigation }) {
                                         color: '#000',
                                         textAlign: 'center'
                                     }}>
-                                        {moment(new Date()).format('DD/MM/YYYY')}
+                                        {moment(dateChoose3).format('DD/MM/YYYY')}
                                     </Text>
                                 </Pressable>
-
+                                <DateTimePickerModal
+                                    isVisible={isDatePickerVisible3}
+                                    mode="date"
+                                    onConfirm={handleConfirm3}
+                                    onCancel={hideDatePicker3}
+                                    date={dateChoose3}
+                                />
                             </View>
                         </View>
                         <View style={{

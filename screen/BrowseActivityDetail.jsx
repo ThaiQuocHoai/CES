@@ -1,39 +1,31 @@
 import React, { useState } from 'react'
-import { Image, Pressable, Text, View } from 'react-native'
+import { Alert, Image, Pressable, Text, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import ImageView from "react-native-image-viewing";
 import { SimpleLineIcons, Ionicons, AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 
-export default function ActivityDetail(props) {
+export default function BrowseActivityDetail({navigation}) {
 
     const [visible, setIsVisible] = useState(false);
     const [index, setIndex] = useState(0);
 
     const images = [
         {
-            uri: "https://images-ext-1.discordapp.net/external/DHgkr_nCEBVoUn0FsFD0R3OXXT2vufE49aFyg3phwFM/%3Fq%3Dtbn%3AANd9GcTCSaVJVzQ--6QfWHYmy7vPwkpel14FAaVZjw%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://images-ext-2.discordapp.net/external/a2CGV58ND4mW97JxSOdPwCdHjQmAnHH0P6oJCpI2MpY/https/lh3.googleusercontent.com/proxy/o0x-qhbZwbgS4ZbL0_Du5CTFvOr87MNcTv847PLwXALvQmh-W1UPexKZuCiQDL9rk9tZ94SnHLXKAftb6xQA1oOpLFM2SHYM-AU5tfGLsZy8cB1KNYz7n0BSf0lSGRsLowpM5fFXAzuzL24Ht-9zMMg20f2N-P0tG5_sCQdrn-eWOGlE-9-Mb45MnA",
         },
         {
-            uri: "https://images-ext-1.discordapp.net/external/cdW_T_wG9YYREMrXy_hL8-v6vsU413f9x5QNyNkoCJo/%3Fq%3Dtbn%3AANd9GcQ-_wSZ1H1M0G0Q9emGHiEGqD5wAf7CIZ_zqhfJCNftEsNLzK4rD4_Pu1e7VjUqYWRM3Zc%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://images-ext-2.discordapp.net/external/y63u_6sANNiEMLh0-47ras_jtnPNkRw5da14BM3LGSA/https/www.baolongan.vn/image/news/2018/20181109/images/Ngh%25E1%25BB%2581-b%25E1%25BB%2591c-v%25C3%25A1c-n%25E1%25BA%25B7ng-nh%25E1%25BB%258Dc-v%25C3%25A0-ch%25E1%25BB%258Bu-nhi%25E1%25BB%2581u-thi%25E1%25BB%2587t-th%25C3%25B2i.jpg?width=545&height=556",
         },
         {
-            uri: "https://images-ext-2.discordapp.net/external/G9k5N0yeiJuI7Z6Hp0xzDP6TOhvw2JVFsoYgq5ShFN8/%3Fq%3Dtbn%3AANd9GcQXF_ST1VMxJZhPB8TBqYB_5ksAMpaWWy4Vqw%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://images-ext-2.discordapp.net/external/CtBSrJaSLDpEHcEqD1HebX9KsFHzM8lQwcUVZGFWCHk/%3Fw%3D1200%26h%3D0%26q%3D100%26dpr%3D1%26fit%3Dcrop%26s%3D3pXkq-JuIXgn2JBctxJdqQ/https/vcdn1-vnexpress.vnecdn.net/2020/04/09/Phat-gao-tu-thien-5-1586419341.jpg?width=828&height=556",
         },
         {
-            uri: "https://images-ext-1.discordapp.net/external/-XJ8r8o7Kp7VWORk9hA2rOv34VJ14khK3_QiDLPNJlI/https/tieudung.vn/upload_images/images/2021/08/23/anh%25207%281%29.jpeg?width=783&height=557",
+            uri: "https://images-ext-1.discordapp.net/external/jw6mrWzHRx8_-h-gx_euA_QIdAYXffkxKkPdl9jk18M/%3Fq%3Dtbn%3AANd9GcTXDAQAjLOJDD8cek-z1kEAQqel0pOc0BovaA%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
         },
         {
-            uri: "https://i.ytimg.com/vi/gv7-Px62pAw/maxresdefault.jpg",
+            uri: "https://images-ext-2.discordapp.net/external/K2eomSv5tfFKwSp3Fl3gXU1ao9mSStGN_gtC4I7k-oA/https/lh3.googleusercontent.com/proxy/URbCjZIs1sb8ahjSkx_3J8w7QfjI-4HT4cDt9deyYKLgmYjbriQsHajUpaOYmevT1rYAmGmEuHIhvfqpuI35jG6rr-uqgJBkmIIxU8w_X1yxS1PBWAT66Z1w5zE",
         },
-        {
-            uri: "https://bizweb.dktcdn.net/100/057/061/articles/1-5d577fe7-41bb-4a48-a111-6c794eaca24a.jpg?v=1499325275443",
-        },
-        {
-            uri: "https://cdn.vietnambiz.vn/stores/news_dataimages/thuongnt/032018/05/06/tp-hcm-tap-hoa-truyen-thong-song-lay-lat-22-.7466.jpg",
-        },
-        {
-            uri: "https://images-ext-1.discordapp.net/external/Qq7qhGXcErrhPDUUDk6dAt_lk0sMS5XJs_ST-lAYfkE/https/dongsaigonplas.com/vnt_upload/File/06_2019/vi-tri-cua-hang.jpg",
-        },
+        
     ];
 
     const renderImageHeader = () => {
@@ -177,7 +169,7 @@ export default function ActivityDetail(props) {
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Tổng số tiền đã chi: </Text>
-                        142,500,000 VNĐ</Text>
+                        140,000,000 VNĐ</Text>
                 </View>
 
             </View>
@@ -204,77 +196,82 @@ export default function ActivityDetail(props) {
                     paddingRight: 25,
                     paddingBottom: 10
                 }}>
-                    •  Vào lúc 5:00AM 19/09/2021 đã mua 1400 thùng mì giá 100.000VNĐ/thùng tại tạp hóa Thành Tín TP HCM.</Text>
-                <Text style={{
-                    marginLeft: 50,
-                    fontSize: 15,
-                    paddingRight: 25,
-                    paddingBottom: 10
-                }}>
-                    •  Vào lúc 7:00AM 19/09/2021 đã mua 40KG túi ni lông loại 10KG giá 50.000VNĐ/KG tại đại lí túi nilông Ngọc Hoa.</Text>
-                <Text style={{
-                    marginLeft: 50,
-                    fontSize: 15,
-                    paddingRight: 25,
-                    paddingBottom: 10
-                }}>
-                    •  Vào lúc 11:00AM 19/09/2021 đã mua 10 thùng nước suối tại tạp hoá Thành Tín cho đoàn công tác từ thiện.</Text>
+                    •  Vào lúc 5:00AM 19/09/2021 đã mua 100 bao gạo, mỗi bao 50kg giá 500.000VNĐ/bao tại tạp hóa Phương Linh Quận 9 TP HCM. Tổng cộng 50,000,000 VNĐ</Text>
+                
             </View>
 
-            <View style={{
-                paddingBottom: 10
-            }}>
-                <View style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    paddingLeft: 20
-                }}>
-                    <SimpleLineIcons name="user" size={24} color="#0F6657" />
-                    <Text style={{
-
-                        marginLeft: 5,
-                        fontSize: 15
-                    }}><Text style={{ fontWeight: 'bold', }}>Người đăng: </Text>
-                        Đỗ Thị Thảo</Text>
-                </View>
-
-            </View>
-            <View style={{
-                paddingBottom: 10
-            }}>
-                <View style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    paddingLeft: 20
-                }}>
-                    <SimpleLineIcons name="user-following" size={24} color="#0F6657" />
-                    <Text style={{
-
-                        marginLeft: 5,
-                        fontSize: 15
-                    }}><Text style={{ fontWeight: 'bold', }}>Người kiểm duyệt: </Text>
-                        Lê Duy Tuấn Vũ</Text>
-                </View>
-
-            </View>
-            <View style={{
-                paddingBottom: 10
-            }}>
-                <View style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    paddingLeft: 20
-                }}>
-                    <Feather name="check-circle" size={24} color="#0F6657" />
-                    <Text style={{
-
-                        marginLeft: 5,
-                        fontSize: 15
-                    }}><Text style={{ fontWeight: 'bold', }}>Trạng thái: </Text>
-                        Đã hoàn thành</Text>
-                </View>
-
-            </View>
+         <View style={{
+             flexDirection:'row',
+             justifyContent: 'space-around',
+             marginTop: 20
+         }}>
+             <Pressable style={{
+                 backgroundColor: 'white',
+                 width: 120,
+                 height: 40,
+                 borderRadius: 5,
+                 borderWidth: 1,
+                 borderColor: 'red',
+                 flexDirection:'row',
+                 alignItems:'center',
+                 justifyContent:'center'
+             }} onPress={() => {
+                Alert.alert(
+                    "Từ chối phê duyệt",
+                    "Bạn muốn từ chối phê duyệt hoạt động này?",
+                    [
+                      {
+                        text: "Huỷ",
+                        style: "cancel"
+                      },
+                      { text: "Đồng ý", onPress: () => {
+                          navigation.goBack('BrowseActivity')
+                      } }
+                    ]
+                  );
+             }}>
+                 <AntDesign name="closecircleo" size={24} color="red" />
+                 <Text style={{
+                     textAlign: 'center',
+                     fontSize: 15,
+                     color: 'red',
+                     marginLeft: 5
+                 }}>Từ chối</Text>
+             </Pressable>
+             <Pressable style={{
+                 backgroundColor: 'white',
+                 width: 120,
+                 height: 40,
+                 borderRadius: 5,
+                 borderWidth: 1,
+                 borderColor: 'green',
+                 flexDirection:'row',
+                 alignItems:'center',
+                 justifyContent:'center'
+             }} onPress={() => {
+                Alert.alert(
+                    "Duyệt hoạt động",
+                    "Bạn muốn duyệt hoạt động này?",
+                    [
+                      {
+                        text: "Huỷ",
+                        style: "cancel"
+                      },
+                      { text: "Đồng ý", onPress: () => {
+                          navigation.goBack('BrowseActivity')
+                      } }
+                    ]
+                  );
+             }}>
+                 <AntDesign name="checkcircleo" size={24} color="green" />
+                 <Text style={{
+                     textAlign: 'center',
+                     fontSize: 15,
+                     color: 'green',
+                     marginLeft: 5
+                 }}>Duyệt</Text>
+             </Pressable>
+         </View>
 
 
         </ScrollView>

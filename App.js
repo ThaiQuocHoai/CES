@@ -11,6 +11,9 @@ import Member from "./screen/Member";
 import MainScreen3 from "./screen/MainScreen3";
 import MainScreen from "./screen/MainScreen";
 import ActivityDetail from "./screen/ActivityDetail";
+import CreateSubActivity from "./screen/CreateSubActivity";
+import BrowseActivity from "./screen/BrowseActivity";
+import BrowseActivityDetail from "./screen/BrowseActivityDetail";
 
 const Stack = createStackNavigator();
 
@@ -52,6 +55,21 @@ export default function App() {
           name="CreateActivity"
           component={CreateActivity}
           options={{ title: 'Tạo chiến dịch' }}
+        />
+        <Stack.Screen
+          name="BrowseActivityDetail"
+          component={BrowseActivityDetail}
+          options={{ title: 'Chi tiết hoạt động chờ duyệt' }}
+        />
+        <Stack.Screen
+          name="BrowseActivity"
+          component={BrowseActivity}
+          options={{ title: 'Duyệt hoạt động của chiến dịch' }}
+        />
+        <Stack.Screen
+          name="CreateSubActivity"
+          component={CreateSubActivity}
+          options={{ title: 'Tạo hoạt động' }}
         />
         <Stack.Screen
           name="InfoActivity"

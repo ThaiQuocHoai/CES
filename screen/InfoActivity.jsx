@@ -29,7 +29,9 @@ export default function InfoActivity({navigation}) {
                     fontSize: 18
                 }}><AntDesign name="team" size={24} color="blue" />  Thành Viên</Text>
             </Pressable>
-            <Pressable style={{
+            <Pressable onPress={() => {
+              navigation.push('CreateSubActivity')
+            }} style={{
                 marginBottom: 10,
                 display: 'flex',
                 justifyContent: 'center',
@@ -45,7 +47,9 @@ export default function InfoActivity({navigation}) {
                     fontSize: 18
                 }}><AntDesign name="plus" size={24} color="green" />  Thêm Hoạt Động </Text>
             </Pressable>
-            <Pressable style={{
+            <Pressable onPress={() => {
+              navigation.push('BrowseActivity');
+            }} style={{
                 marginBottom: 10,
                 display: 'flex',
                 justifyContent: 'center',

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, ScrollView, Image, Pressable, StyleSheet } from 'react-native';
-import { AntDesign, MaterialCommunityIcons, MaterialIcons, Feather, Entypo  } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons, MaterialIcons, Feather, Entypo } from '@expo/vector-icons';
 import StepProgress from '../component/StepProgress';
 
 export default function CharityDetail({ navigation, route }) {
@@ -8,7 +8,9 @@ export default function CharityDetail({ navigation, route }) {
     const { item } = route.params;
 
     return (
-        <View >
+        <View style={{
+            position:'relative'
+        }}>
             <View style={{
                 marginTop: 30,
                 paddingTop: 15,
@@ -105,7 +107,7 @@ export default function CharityDetail({ navigation, route }) {
                             lineHeight: 22,
                             marginLeft: 15
                         }}>
-                             • Tiến độ giải ngân: <Text style={{ fontWeight: 'bold' }}>{item.progress}%</Text>
+                            • Tiến độ giải ngân: <Text style={{ fontWeight: 'bold' }}>{item.progress}%</Text>
                         </Text>
                         <Text style={{
                             marginTop: 10,
@@ -164,8 +166,28 @@ export default function CharityDetail({ navigation, route }) {
                     </View>
 
                 </View>
+                
             </ScrollView>
+            <Pressable style={{
+                    position: 'absolute',
+                    bottom: 100,
+                    right: 30,
+                    elevation: 99,
+                    backgroundColor: '#013459',
+                    width: 60,
+                    height: 60,
+                    borderRadius: 50
+                }} onPress={() => {
+                    navigation.push('CreateSubActivity')
+                }}>
+                    <Text style={{
+                        textAlign: 'center',
+                        lineHeight: 60,
 
+                    }}><AntDesign style={{
+                        fontWeight: 'bold'
+                    }} name="plus" size={35} color="white" /></Text>
+                </Pressable>
         </View>
     )
 }

@@ -6,6 +6,7 @@ import UserInfor from '../screen/UserInfor';
 import { AntDesign } from '@expo/vector-icons';
 import MainScreen3 from '../screen/MainScreen3';
 import Notify from '../screen/Notify';
+import BrowseActivity from '../screen/BrowseActivity';
 
 
 const Tab = createBottomTabNavigator();
@@ -61,7 +62,7 @@ const NavBar = (props) => {
             }} />
 
             <Tab.Screen name="Thông báo" component={Notify} options={{
-                headerShown: false,
+                headerShown: true,
                 // tabBarShowLabel: false
             }} />
             <Tab.Screen name="Thông tin" component={UserInfor} options={{
