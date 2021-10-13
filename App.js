@@ -14,6 +14,7 @@ import ActivityDetail from "./screen/ActivityDetail";
 import CreateSubActivity from "./screen/CreateSubActivity";
 import BrowseActivity from "./screen/BrowseActivity";
 import BrowseActivityDetail from "./screen/BrowseActivityDetail";
+import PersonalInfo from "./screen/PersonalInfo";
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,11 @@ export default function App() {
           name="BrowseActivityDetail"
           component={BrowseActivityDetail}
           options={{ title: 'Chi tiết hoạt động chờ duyệt' }}
+        />
+        <Stack.Screen
+          name="PersonalInfo"
+          component={PersonalInfo}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="BrowseActivity"

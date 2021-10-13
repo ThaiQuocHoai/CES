@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, Children } from 'react'
-import { Text, View, TextInput, Pressable, Platform, Button, ScrollView, StatusBar, Image, Alert } from 'react-native';
+import { Text, View, TextInput, Pressable, Platform, Button, ScrollView, StatusBar, Image, Alert, SafeAreaView, LogBox } from 'react-native';
 import { AntDesign, MaterialIcons, FontAwesome, SimpleLineIcons, Ionicons, Foundation, MaterialCommunityIcons } from '@expo/vector-icons';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as ImagePicker from 'expo-image-picker';
@@ -22,6 +22,11 @@ export default function CreateActivity({ navigation }) {
             }
         })();
     }, []);
+
+    useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [])
+
     const pickImageLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -189,9 +194,15 @@ export default function CreateActivity({ navigation }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        { label: 'Apple', value: 'apple' },
-        { label: 'Banana', value: 'banana' }
+        { label: 'Mua sắm lương thực', value: 'doan' },
+        { label: 'Phát quà', value: 'qua' },
+        { label: 'Thuê phương tiện', value: 'phuongtien' },
+        { label: 'Tiền trợ cấp', value: 'trocap' },
+        { label: 'Hoạt động khác', value: 'khac' },
     ]);
+
+    const [isDisplay, setIsDisplay] = useState('none');
+
 
     const renderPlan = () => {
         return <View key={planList.length} style={{
@@ -332,6 +343,172 @@ export default function CreateActivity({ navigation }) {
         </View>
     }
 
+    const renderAllPlan = () => {
+        return planList.map((plan, index) => {
+            return <View key={index} style={{
+                margin: 10,
+                marginLeft: 20,
+                marginRight: 20,
+                borderBottomWidth: 1,
+                borderBottomColor: 'lightgray',
+                borderStyle: 'dashed',
+                position: 'relative'
+            }}>
+                <Pressable style={{
+                    position: 'absolute',
+                    top: 5,
+                    right: 10
+                }} onPress={() => {
+                    onRemovePlan(index);
+                }}>
+                    <Ionicons name="ios-close-circle-outline" size={40} color="black" />
+                </Pressable>
+                <Text style={{
+                    marginBottom: 10,
+                    fontSize: 15,
+                    fontWeight: 'bold'
+                }}>Hoạt động {index + 1}</Text>
+
+                <View style={{ marginTop: 10 }}>
+                    <Text>Hoạt động</Text>
+                    <SafeAreaView>
+                        <DropDownPicker
+                            open={open}
+                            value={value}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+                            style={{
+                                borderColor: 'gray',
+                                width: 300,
+                                height: 40,
+                                // borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                                marginBottom: 10,
+                            }}
+                            containerStyle={{
+                                width: 300
+                            }}
+                            placeholder='Chọn hoạt động'
+                        />
+                    </SafeAreaView>
+                </View>
+                {value === 'khac' ? <View >
+                    <Text>Tên hoạt động</Text>
+                    <TextInput
+                        style={{
+                            borderColor: 'gray',
+                            width: 300,
+                            height: 40,
+                            borderWidth: 1,
+                            paddingLeft: 15,
+                            paddingRight: 20,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            // marginLeft: 20,
+                            borderRadius: 10
+                        }}
+                        placeholder="Nhập hoạt động"
+                    />
+                </View> : null}
+                
+                <Text>Địa điểm thực hiện hoạt động</Text>
+                <TextInput
+                    style={{
+                        borderColor: 'gray',
+                        width: 300,
+                        height: 40,
+                        borderWidth: 1,
+                        paddingLeft: 15,
+                        paddingRight: 20,
+                        marginTop: 10,
+                        // marginLeft: 20,
+                        borderRadius: 10
+                    }}
+                    placeholder="Nhập địa điểm"
+                />
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: 10
+                }}>
+
+                    <View>
+                        <Text>Thời gian</Text>
+                        <Pressable onPress={showDatePicker2}>
+                            <Text style={{
+                                borderWidth: 1,
+                                borderColor: 'gray',
+                                width: 110,
+                                height: 40,
+                                borderRadius: 10,
+                                paddingTop: 10,
+                                color: '#000',
+                                textAlign: 'center',
+                                marginTop: 10
+                            }}>
+                                {moment(dateChoose2).format('DD/MM/YYYY')}
+                            </Text>
+                        </Pressable>
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible2}
+                            mode="date"
+                            onConfirm={handleConfirm2}
+                            onCancel={hideDatePicker2}
+                            date={dateChoose2}
+                        />
+                    </View>
+                    <View style={{
+                        marginLeft: 10
+                    }}>
+                        <Text>Số tiền dự tính</Text>
+                        <TextInput
+                            style={{
+                                borderColor: 'gray',
+                                width: 180,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                            }}
+                            placeholder="Nhập số tiền"
+                            keyboardType="numeric"
+                        />
+                    </View>
+
+                </View>
+                <View style={{
+                    marginTop: 10,
+                    marginBottom: 20
+                }}>
+                    <Text>Người thực hiện</Text>
+                    <TextInput
+                        style={{
+                            borderColor: 'gray',
+                            width: 300,
+                            height: 40,
+                            borderWidth: 1,
+                            paddingLeft: 15,
+                            paddingRight: 20,
+                            marginTop: 10,
+                            // marginLeft: 20,
+                            borderRadius: 10
+                        }}
+                        placeholder="Nhập họ và tên"
+                    />
+                </View>
+            </View>
+        })
+    }
+
 
 
 
@@ -442,8 +619,8 @@ export default function CreateActivity({ navigation }) {
                                     Chi tiết kế hoạch
                                 </Text>
                             </View>
-                            {/* {renderPlan()} */}
-                            {planList}
+                            {renderAllPlan()}
+                            {/* {planList} */}
                             <View style={{
                                 display: 'flex',
                                 flexDirection: 'row',

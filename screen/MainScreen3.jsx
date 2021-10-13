@@ -11,44 +11,6 @@ export default function MainScreen3({ navigation }) {
             <View style={styles.headerStyle}>
                 <Image style={styles.headerImage} source={logo} />
             </View>
-            <View style={{
-            }}>
-                <Text style={styles.textStyles}>Tìm kiếm chiến dịch</Text>
-                <TextInput
-                    placeholder="Nhập mã chiến dịch"
-                    style={{
-                        borderColor: 'rgba(33,33,33,.7)',
-                        height: 50,
-                        borderWidth: .5,
-                        width: 300,
-                        color: 'rgba(33,33,33,.7)',
-                        paddingLeft: 15,
-                        borderRadius: 9,
-                        fontSize: 20,
-                        marginLeft: 55,
-                        paddingRight: 50,
-                        marginTop: 20
-                    }}
-                />
-                <Pressable style={{
-                    position: 'absolute',
-                    top: 55,
-                    right: 65
-                }} onPress={() => {
-                    alert('abc')
-                }
-                } >
-                    <Text style={{
-                        color: '#fff',
-                        fontSize: 20,
-                        textAlign: 'center',
-                        paddingTop: 35,
-                        // textDecorationLine: "underline",
-                        // textDecorationStyle: "solid",
-                        // textDecorationColor: "#000",
-                    }}><AntDesign name="search1" size={30} color="rgba(33,33,33,.7)" /> </Text>
-                </Pressable>
-            </View>
 
             <Text style={styles.textStyles}>Danh mục hoạt động</Text>
 

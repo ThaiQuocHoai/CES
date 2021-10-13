@@ -135,7 +135,7 @@ export default function ActivityDetail(props) {
                         fontWeight: 'bold',
                         marginLeft: 5,
                         fontSize: 15
-                    }}>Địa điểm mua hàng:</Text>
+                    }}>Địa điểm thực hiện:</Text>
 
                 </View>
                 <Text style={{

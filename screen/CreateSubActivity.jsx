@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Text, TextInput, View, Pressable, Alert, Image, ScrollView } from 'react-native';
+import { Text, TextInput, View, Pressable, Alert, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
 import { SimpleLineIcons, EvilIcons, MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import moment from 'moment';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as ImagePicker from 'expo-image-picker';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { AssetsSelector } from 'expo-images-picker'
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function CreateSubActivity({ navigation }) {
     const refRBSheet = useRef();
@@ -41,6 +42,9 @@ export default function CreateSubActivity({ navigation }) {
             }
         })();
     }, []);
+    useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [])
 
     const pickImageLibrary = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -158,6 +162,16 @@ export default function CreateSubActivity({ navigation }) {
         </View>
     }
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Mua sắm lương thực', value: 'doan' },
+        { label: 'Phát quà', value: 'qua' },
+        { label: 'Thuê phương tiện', value: 'phuongtien' },
+        { label: 'Tiền trợ cấp', value: 'trocap' },
+        { label: 'Hoạt động khác', value: 'khac' },
+    ]);
+
     return (
         <ScrollView>
             <View style={{
@@ -194,6 +208,68 @@ export default function CreateSubActivity({ navigation }) {
                     paddingTop: 10,
                     paddingLeft: 10
                 }}>
+
+                    <View style={{ marginTop: 10 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+
+                            <MaterialIcons name="campaign" size={24} color="#024f87" />
+                            <Text style={{
+                                marginLeft: 5
+                            }}>Hoạt động</Text>
+                        </View>
+
+                        <SafeAreaView>
+                            <DropDownPicker
+                                open={open}
+                                value={value}
+                                items={items}
+                                setOpen={setOpen}
+                                setValue={setValue}
+                                setItems={setItems}
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    height: 40,
+                                    // borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    marginTop: 10,
+                                    // marginLeft: 20,
+                                    borderRadius: 10,
+                                    marginBottom: 10,
+                                    // marginLeft: 20
+                                }}
+                                containerStyle={{
+                                    width: 310,
+                                    marginLeft: 20
+                                }}
+                                placeholder='Chọn hoạt động'
+                            />
+                        </SafeAreaView>
+                    </View>
+                    {value === 'khac' ? <View >
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+                        <MaterialIcons name="drive-file-rename-outline" size={24} color="#024f87" />
+                            <Text style={{ marginLeft: 5 }}>Tên hoạt động</Text>
+                        </View>
+                        <TextInput
+                            style={{
+                                borderColor: 'gray',
+                                width: 310,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                marginBottom: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                                marginLeft: 20
+                            }}
+                            placeholder="Nhập tên hoạt động"
+                        />
+                    </View> : null}
+
                     <View>
                         <View style={{
                             flexDirection: 'row',

@@ -127,7 +127,7 @@ export default function BrowseActivityDetail({navigation}) {
                         fontWeight: 'bold',
                         marginLeft: 5,
                         fontSize: 15
-                    }}>Địa điểm mua hàng:</Text>
+                    }}>Địa điểm thực hiện:</Text>
 
                 </View>
                 <Text style={{
@@ -170,6 +170,24 @@ export default function BrowseActivityDetail({navigation}) {
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Tổng số tiền đã chi: </Text>
                         140,000,000 VNĐ</Text>
+                </View>
+
+            </View>
+            <View style={{
+                paddingBottom: 10
+            }}>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    paddingLeft: 20
+                }}>
+                    <MaterialIcons  name="attach-money" size={24} color="#0F6657" />
+                    <Text style={{
+
+                        marginLeft: 5,
+                        fontSize: 15
+                    }}><Text style={{ fontWeight: 'bold', }}>Nguời đăng: </Text>
+                        Lê Tuấn Vũ</Text>
                 </View>
 
             </View>
