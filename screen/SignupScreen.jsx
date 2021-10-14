@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import { Image, Text, View, Pressable, ScrollView } from 'react-native'
+import { Image, Text, View, Pressable, ScrollView, SafeAreaView, TouchableWithoutFeedback } from 'react-native'
 import logo from '../assets/images/LOGO.png';
 import { Dimensions } from 'react-native';
 import { Surface, TextInput, Button } from "react-native-paper";
@@ -10,7 +10,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
-export default function LoginScreen({ navigation }) {
+export default function SignupScreen({ navigation }) {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [secure, setSecure] = useState(true);
@@ -22,16 +22,16 @@ export default function LoginScreen({ navigation }) {
                 height: '100%',
                 position: 'relative'
             }}>
-                <Image source={logo} style={{
+                {/* <Image source={logo} style={{
                     position: 'absolute',
                     top: 20,
                     left: 85,
                     width: 250,
                     height: 250
-                }} />
+                }} /> */}
                 <View style={{
                     position: 'absolute',
-                    top: 265,
+                    top: 0,
                     backgroundColor: '#fff',
                     width: windowWidth,
                     height: windowHeight,
@@ -48,8 +48,42 @@ export default function LoginScreen({ navigation }) {
                             color: '#000',
                             paddingBottom: 5,
                             textAlign: 'center',
+                            marginTop: 40,
 
-                        }}>Đăng nhập</Text>
+                        }}>Đăng kí</Text>
+
+                        <Surface>
+                            <TextInput
+                                style={styles.inputStyle}
+                                mode="text"
+                                label="Họ và tên"
+                                theme={{
+                                    colors: { primary: "black" },
+                                }}
+                                right={
+                                    <TextInput.Icon name="account" size={24} color='#024f87' />
+                                }
+                                value={phone}
+                                onChangeText={(phone) => setPhone(phone)}
+                            />
+                        </Surface>
+
+                        <Surface>
+                            <TextInput
+                                style={styles.inputStyle}
+                                mode="text"
+                                label="Email"
+                                theme={{
+                                    colors: { primary: "black" },
+                                }}
+                                right={
+                                    <TextInput.Icon name="email" size={24} color='#024f87' />
+                                }
+                                value={phone}
+                                onChangeText={(phone) => setPhone(phone)}
+                            />
+                        </Surface>
+
                         <Surface>
                             <TextInput
                                 style={styles.inputStyle}
@@ -97,6 +131,39 @@ export default function LoginScreen({ navigation }) {
                                 onChangeText={(password) => setPassword(password)}
                             />
                         </Surface>
+
+                        <Surface
+                            style={{
+                                marginTop: 10,
+                            }}
+                        >
+                            <TextInput
+                                style={styles.inputStyle}
+                                mode="text"
+                                secureTextEntry={secure}
+                                label="Xác nhận mật khẩu"
+                                theme={{
+                                    colors: { primary: "black" },
+                                }}
+                                right={
+                                    secure === true ? (
+                                        <TextInput.Icon
+                                            onPress={() => setSecure(!secure)}
+                                            name="eye"
+                                            color='#024f87'
+                                        />
+                                    ) : (
+                                        <TextInput.Icon
+                                            onPress={() => setSecure(!secure)}
+                                            name="eye-off"
+                                            color='#024f87'
+                                        />
+                                    )
+                                }
+                                value={password}
+                                onChangeText={(password) => setPassword(password)}
+                            />
+                        </Surface>
                         {/* <View style={{ flexDirection: 'row' }}> */}
                         <Pressable>
                             <Text style={{
@@ -117,12 +184,12 @@ export default function LoginScreen({ navigation }) {
                                 color: 'white',
                                 fontSize: 15,
 
-                            }}>Đăng nhập</Text>
+                            }}>Đăng kí</Text>
                         </Pressable>
 
                         <Pressable
                             onPress={() => {
-                                navigation.push('Signup');
+                                navigation.push('Login');
                             }}
                         >
                             <Text style={{
@@ -130,9 +197,9 @@ export default function LoginScreen({ navigation }) {
                                 textAlign: 'center',
                                 color: 'black',
                                 fontSize: 13,
-                            }}>Bạn chưa có tài khoản ? <Text style={{
+                            }}>Bạn đã có tài khoản ? <Text style={{
                                 color: '#1e88e5',
-                            }}>Đăng kí</Text></Text>
+                            }}>Đăng nhập</Text></Text>
                         </Pressable>
 
                         {/* </View> */}

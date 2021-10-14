@@ -72,13 +72,24 @@ export default function StepProgress({ navigation }) {
                 paddingRight: 10,
             }}>
                 <View style={styles.viewStyle}>
-                    <AntDesign name="calendar" size={24} color="orange" />
-                    <Text style={{
-                        marginTop: 10,
-                        marginBottom: 10,
-                        fontSize: 15,
-                        fontWeight: 'bold'
-                    }}>  Ngày 18/08/2021</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <AntDesign name="calendar" size={24} color="orange" />
+
+                        <Text style={{
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: 15,
+                            fontWeight: 'bold'
+                        }}>  Ngày 18/08/2021</Text>
+                    </View>
+                    <Pressable
+                        onPress={() => {
+                            navigation.push('UpdateChariry');
+                        }}
+                    >
+                        <Text>Sửa</Text>
+                    </Pressable>
+                    {/* </View> */}
                 </View>
                 <View style={{
                     paddingTop: 20,
@@ -167,14 +178,26 @@ export default function StepProgress({ navigation }) {
                 marginTop: 110,
             }}>
                 <View style={styles.viewStyle}>
-                    <AntDesign name="calendar" size={24} color="orange" />
-                    <Text style={{
-                        marginTop: 10,
-                        marginBottom: 10,
-                        fontSize: 15,
-                        fontWeight: 'bold'
-                    }}>  Ngày 19/08/2021</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <AntDesign name="calendar" size={24} color="orange" />
+
+                        <Text style={{
+                            marginTop: 10,
+                            marginBottom: 10,
+                            fontSize: 15,
+                            fontWeight: 'bold'
+                        }}>  Ngày 19/08/2021</Text>
+                    </View>
+                    <Pressable
+                        onPress={() => {
+                            navigation.push('UpdateCharity');
+                        }}>
+
+                        <Text>Sửa</Text>
+                    </Pressable>
+                    {/* </View> */}
                 </View>
+
                 <View style={{
                     paddingTop: 20,
                     paddingBottom: 20,
@@ -273,7 +296,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         marginBottom: 10,
-        marginTop: 10
+        marginTop: 10,
+        paddingRight: 10
     }
 })

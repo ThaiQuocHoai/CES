@@ -15,6 +15,8 @@ import CreateSubActivity from "./screen/CreateSubActivity";
 import BrowseActivity from "./screen/BrowseActivity";
 import BrowseActivityDetail from "./screen/BrowseActivityDetail";
 import PersonalInfo from "./screen/PersonalInfo";
+import SignupScreen from "./screen/SignupScreen";
+import UpdateCharity from "./screen/UpdateCharity";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +27,16 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UpdateChariry"
+          component={UpdateCharity}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={SignupScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -40,7 +52,7 @@ export default function App() {
         <Stack.Screen
           name="Charity"
           component={MainScreen}
-          options={{ headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Detail"
@@ -87,7 +99,7 @@ export default function App() {
           component={Member}
           options={{ title: "Thành Viên" }}
 
-          // options={{ headerShown: false }}
+        // options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
