@@ -1,17 +1,33 @@
-import React, { useState } from 'react'
-import { Alert, Image, Pressable, Text, View } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Alert, Image, Pressable, Text, View, Modal, StyleSheet, LogBox, TextInput } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import ImageView from "react-native-image-viewing";
 import { SimpleLineIcons, Ionicons, AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
+import DropDownPicker from 'react-native-dropdown-picker';
 
-export default function BrowseActivityDetail({navigation}) {
+export default function BrowseActivityDetail({ navigation }) {
 
+    const [modalVisible, setModalVisible] = useState(false);
     const [visible, setIsVisible] = useState(false);
     const [index, setIndex] = useState(0);
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Thiếu thông tin', value: 'doan' },
+        { label: 'Thông tin chưa chính xác', value: 'qua' },
+        { label: 'Hình ảnh không rõ ràng', value: 'phuongtien' },
+        // { label: 'Tiền trợ cấp', value: 'trocap' },
+        { label: 'Lí do khác', value: 'khac' },
+    ]);
+
+    useEffect(() => {
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [])
+
     const images = [
         {
-            uri: "https://images-ext-2.discordapp.net/external/a2CGV58ND4mW97JxSOdPwCdHjQmAnHH0P6oJCpI2MpY/https/lh3.googleusercontent.com/proxy/o0x-qhbZwbgS4ZbL0_Du5CTFvOr87MNcTv847PLwXALvQmh-W1UPexKZuCiQDL9rk9tZ94SnHLXKAftb6xQA1oOpLFM2SHYM-AU5tfGLsZy8cB1KNYz7n0BSf0lSGRsLowpM5fFXAzuzL24Ht-9zMMg20f2N-P0tG5_sCQdrn-eWOGlE-9-Mb45MnA",
+            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIZV0_1Ufe0Ghf_m4RLxhKdZT0kDEZJHCjlA&usqp=CAU",
         },
         {
             uri: "https://images-ext-2.discordapp.net/external/y63u_6sANNiEMLh0-47ras_jtnPNkRw5da14BM3LGSA/https/www.baolongan.vn/image/news/2018/20181109/images/Ngh%25E1%25BB%2581-b%25E1%25BB%2591c-v%25C3%25A1c-n%25E1%25BA%25B7ng-nh%25E1%25BB%258Dc-v%25C3%25A0-ch%25E1%25BB%258Bu-nhi%25E1%25BB%2581u-thi%25E1%25BB%2587t-th%25C3%25B2i.jpg?width=545&height=556",
@@ -23,9 +39,9 @@ export default function BrowseActivityDetail({navigation}) {
             uri: "https://images-ext-1.discordapp.net/external/jw6mrWzHRx8_-h-gx_euA_QIdAYXffkxKkPdl9jk18M/%3Fq%3Dtbn%3AANd9GcTXDAQAjLOJDD8cek-z1kEAQqel0pOc0BovaA%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
         },
         {
-            uri: "https://images-ext-2.discordapp.net/external/K2eomSv5tfFKwSp3Fl3gXU1ao9mSStGN_gtC4I7k-oA/https/lh3.googleusercontent.com/proxy/URbCjZIs1sb8ahjSkx_3J8w7QfjI-4HT4cDt9deyYKLgmYjbriQsHajUpaOYmevT1rYAmGmEuHIhvfqpuI35jG6rr-uqgJBkmIIxU8w_X1yxS1PBWAT66Z1w5zE",
+            uri: "https://gaotuananh.vn/wp-content/uploads/2021/06/gao-tu-thien-1-571x400.jpg",
         },
-        
+
     ];
 
     const renderImageHeader = () => {
@@ -163,13 +179,13 @@ export default function BrowseActivityDetail({navigation}) {
                     flexDirection: 'row',
                     paddingLeft: 20
                 }}>
-                    <MaterialIcons  name="attach-money" size={24} color="#0F6657" />
+                    <MaterialIcons name="attach-money" size={24} color="#0F6657" />
                     <Text style={{
 
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Tổng số tiền đã chi: </Text>
-                        140,000,000 VNĐ</Text>
+                        50,000,000 VNĐ</Text>
                 </View>
 
             </View>
@@ -181,7 +197,7 @@ export default function BrowseActivityDetail({navigation}) {
                     flexDirection: 'row',
                     paddingLeft: 20
                 }}>
-                    <MaterialIcons  name="attach-money" size={24} color="#0F6657" />
+                    <MaterialIcons name="attach-money" size={24} color="#0F6657" />
                     <Text style={{
 
                         marginLeft: 5,
@@ -215,83 +231,237 @@ export default function BrowseActivityDetail({navigation}) {
                     paddingBottom: 10
                 }}>
                     •  Vào lúc 5:00AM 19/09/2021 đã mua 100 bao gạo, mỗi bao 50kg giá 500.000VNĐ/bao tại tạp hóa Phương Linh Quận 9 TP HCM. Tổng cộng 50,000,000 VNĐ</Text>
-                
+
             </View>
 
-         <View style={{
-             flexDirection:'row',
-             justifyContent: 'space-around',
-             marginTop: 20
-         }}>
-             <Pressable style={{
-                 backgroundColor: 'white',
-                 width: 120,
-                 height: 40,
-                 borderRadius: 5,
-                 borderWidth: 1,
-                 borderColor: 'red',
-                 flexDirection:'row',
-                 alignItems:'center',
-                 justifyContent:'center'
-             }} onPress={() => {
-                Alert.alert(
-                    "Từ chối phê duyệt",
-                    "Bạn muốn từ chối phê duyệt hoạt động này?",
-                    [
-                      {
-                        text: "Huỷ",
-                        style: "cancel"
-                      },
-                      { text: "Đồng ý", onPress: () => {
-                          navigation.goBack('BrowseActivity')
-                      } }
-                    ]
-                  );
-             }}>
-                 <AntDesign name="closecircleo" size={24} color="red" />
-                 <Text style={{
-                     textAlign: 'center',
-                     fontSize: 15,
-                     color: 'red',
-                     marginLeft: 5
-                 }}>Từ chối</Text>
-             </Pressable>
-             <Pressable style={{
-                 backgroundColor: 'white',
-                 width: 120,
-                 height: 40,
-                 borderRadius: 5,
-                 borderWidth: 1,
-                 borderColor: 'green',
-                 flexDirection:'row',
-                 alignItems:'center',
-                 justifyContent:'center'
-             }} onPress={() => {
-                Alert.alert(
-                    "Duyệt hoạt động",
-                    "Bạn muốn duyệt hoạt động này?",
-                    [
-                      {
-                        text: "Huỷ",
-                        style: "cancel"
-                      },
-                      { text: "Đồng ý", onPress: () => {
-                          navigation.goBack('BrowseActivity')
-                      } }
-                    ]
-                  );
-             }}>
-                 <AntDesign name="checkcircleo" size={24} color="green" />
-                 <Text style={{
-                     textAlign: 'center',
-                     fontSize: 15,
-                     color: 'green',
-                     marginLeft: 5
-                 }}>Duyệt</Text>
-             </Pressable>
-         </View>
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 20
+            }}>
+                <Pressable style={{
+                    backgroundColor: 'white',
+                    width: 120,
+                    height: 40,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: 'red',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }} onPress={() => {
+                    setModalVisible(true);
 
+                    // Alert.alert(
+                    //     "Từ chối phê duyệt",
+                    //     "Bạn muốn từ chối phê duyệt hoạt động này?",
+                    //     [
+                    //       {
+                    //         text: "Huỷ",
+                    //         style: "cancel"
+                    //       },
+                    //       { text: "Đồng ý", onPress: () => {
+                    //           navigation.goBack('BrowseActivity')
+                    //       } }
+                    //     ]
+                    //   );
+                }}>
+                    <AntDesign name="closecircleo" size={24} color="red" />
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 15,
+                        color: 'red',
+                        marginLeft: 5
+                    }}>Từ chối</Text>
+                </Pressable>
+                <Pressable style={{
+                    backgroundColor: 'white',
+                    width: 120,
+                    height: 40,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: 'green',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }} onPress={() => {
+                    Alert.alert(
+                        "Duyệt hoạt động",
+                        "Bạn muốn duyệt hoạt động này?",
+                        [
+                            {
+                                text: "Huỷ",
+                                style: "cancel"
+                            },
+                            {
+                                text: "Đồng ý", onPress: () => {
+                                    navigation.goBack('BrowseActivity')
+                                }
+                            }
+                        ]
+                    );
+                }}>
+                    <AntDesign name="checkcircleo" size={24} color="green" />
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 15,
+                        color: 'green',
+                        marginLeft: 5
+                    }}>Duyệt</Text>
+                </Pressable>
+            </View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    // Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={[styles.modalText, { fontSize: 15, fontWeight: 'bold' }]}>Bạn muốn từ chối hoạt động này?</Text>
+                        <Text>Chọn lí do:</Text>
+                        <DropDownPicker
+                            open={open}
+                            value={value}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+                            style={{
+                                borderColor: 'gray',
+                                width: 300,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10
+                            }}
+                            placeholder='-- Chọn lí do --'
+                        />
+
+                        {value === 'khac' ? <View >
+                            <Text style={{
+                                marginTop: 20
+                            }}>Nhập lí do khác</Text>
+                            <TextInput
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 300,
+                                    // height: 80,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    marginTop: 10,
+                                    marginBottom: 10,
+                                    // marginLeft: 20,
+                                    borderRadius: 10,
+                                    justifyContent: 'flex-start',
+                                }}
+                                placeholder=""
+                                multiline={true}
+                                numberOfLines={7}
+                            />
+                        </View> : null}
+
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
+                            width: '100%',
+                            marginTop: 40
+                        }}>
+                            <Pressable
+                                style={{
+                                    width: 100,
+                                    height: 50,
+                                    backgroundColor: 'red',
+                                    borderRadius: 10
+                                }}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={{
+                                    color: 'white',
+                                    textAlign: 'center',
+                                    paddingTop: 12
+
+                                }}>Huỷ</Text>
+                            </Pressable>
+                            <Pressable
+                                style={{
+                                    width: 100,
+                                    height: 50,
+                                    backgroundColor: 'green',
+                                    borderRadius: 10
+                                }}
+                                onPress={() => {
+                                    setModalVisible(!modalVisible);
+                                    navigation.push('BrowseActivity')
+                                }}
+                            >
+                                <Text style={{
+                                    color: 'white',
+                                    textAlign: 'center',
+                                    paddingTop: 12
+
+                                }}>Xác nhận</Text>
+                            </Pressable>
+
+                        </View>
+                    </View>
+                </View>
+            </Modal>
 
         </ScrollView>
     )
 }
+
+
+const styles = StyleSheet.create({
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+        paddingBottom: 50
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        paddingBottom: 50
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonOpen: {
+        backgroundColor: "#F194FF",
+    },
+    buttonClose: {
+        backgroundColor: "#2196F3",
+    },
+    textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+    }
+});

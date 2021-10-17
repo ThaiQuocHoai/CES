@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Text, Dimensions, Pressable } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import { Feather, AntDesign } from '@expo/vector-icons';
+import { Button } from 'react-native-paper';
 
 const { width, height } = Dimensions.get('window');
 
 const labels = ["Cart"];
-const labels3 = ["Cart", "2", "3"];
+const labels3 = ["Cart"];
 const customStyles = {
-    stepIndicatorSize: 30,
-    currentStepIndicatorSize: 30,
-    separatorStrokeWidth: 2,
+    stepIndicatorSize: 0,
+    currentStepIndicatorSize: 5,
+    separatorStrokeWidth: 5,
     currentStepStrokeWidth: 3,
-    stepStrokeCurrentColor: 'green',
-    stepStrokeWidth: 3,
+    stepStrokeCurrentColor: '#fff',
+    stepStrokeWidth: 0,
     stepStrokeFinishedColor: 'green',
     stepStrokeUnFinishedColor: 'green',
     separatorFinishedColor: '#013459',
@@ -21,13 +22,13 @@ const customStyles = {
     stepIndicatorFinishedColor: '#013459',
     stepIndicatorUnFinishedColor: '#ffffff',
     stepIndicatorCurrentColor: '#ffffff',
-    stepIndicatorLabelFontSize: 13,
-    currentStepIndicatorLabelFontSize: 13,
+    stepIndicatorLabelFontSize: 0,
+    currentStepIndicatorLabelFontSize: 0,
     stepIndicatorLabelCurrentColor: '#013459',
     stepIndicatorLabelFinishedColor: '#ffffff',
     stepIndicatorLabelUnFinishedColor: '#013459',
     labelColor: '#999999',
-    labelSize: 13,
+    labelSize: 0,
     currentStepLabelColor: '#013459'
 }
 
@@ -48,12 +49,16 @@ export default function StepProgress({ navigation }) {
             status: 140000000,
             owner: 'Đỗ Thị Thảo'
         },
+    ]
+    const data3 = [
         {
             label: 'Mua vật dụng đóng gói',
             dateTime: '7:00 AM',
             status: 2000000,
             owner: 'Đỗ Thị Thảo'
         },
+    ]
+    const data4 = [
         {
             label: 'Chi phí phát sinh',
             dateTime: '11:00 AM',
@@ -80,22 +85,22 @@ export default function StepProgress({ navigation }) {
                             marginBottom: 10,
                             fontSize: 15,
                             fontWeight: 'bold'
-                        }}>  Ngày 18/08/2021</Text>
+                        }}>  Ngày 18/09/2021</Text>
                     </View>
-                    <Pressable
+                    {/* <Pressable
                         onPress={() => {
                             navigation.push('UpdateChariry');
                         }}
                     >
                         <Text>Sửa</Text>
-                    </Pressable>
+                    </Pressable> */}
                     {/* </View> */}
                 </View>
                 <View style={{
                     paddingTop: 20,
                     paddingBottom: 20,
                     backgroundColor: '#fff',
-                    height: 180,
+                    height: 200,
                     shadowColor: "#000",
                     shadowOffset: {
                         width: 0,
@@ -162,6 +167,28 @@ export default function StepProgress({ navigation }) {
                                         <Text>Người thực hiện:</Text>
                                         <Text style={{ fontWeight: 'bold' }}>{data[position].owner}</Text>
                                     </View>
+                                    {/* <Button
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-end',
+                                            backgroundColor: '#024f87',
+                                            width: 80,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            marginStart: 'auto'
+                                        }}
+                                        icon="cog-outline"
+
+                                        labelStyle={{
+                                            color: '#fff',
+                                            // fontSize: 20
+                                        }}
+                                        onPress={() => {
+                                            navigation.push('UpdateChariry')
+                                        }}
+                                    >
+                                        Sửa
+                                    </Button> */}
                                 </Pressable>
                             )
                         }}
@@ -170,9 +197,9 @@ export default function StepProgress({ navigation }) {
                 </View>
             </View>
             <View style={{
-                height: 350,
+                height: 650,
                 // width: width - 70,
-                marginBottom: 350,
+                marginBottom: 220,
                 paddingLeft: 10,
                 paddingRight: 10,
                 marginTop: 110,
@@ -186,15 +213,15 @@ export default function StepProgress({ navigation }) {
                             marginBottom: 10,
                             fontSize: 15,
                             fontWeight: 'bold'
-                        }}>  Ngày 19/08/2021</Text>
+                        }}>  Ngày 19/09/2021</Text>
                     </View>
-                    <Pressable
+                    {/* <Pressable
                         onPress={() => {
-                            navigation.push('UpdateCharity');
+                            navigation.push('UpdateChariry');
                         }}>
 
                         <Text>Sửa</Text>
-                    </Pressable>
+                    </Pressable> */}
                     {/* </View> */}
                 </View>
 
@@ -202,7 +229,7 @@ export default function StepProgress({ navigation }) {
                     paddingTop: 20,
                     paddingBottom: 20,
                     backgroundColor: '#fff',
-                    height: 520,
+                    height: 200,
                     shadowColor: "#000",
                     shadowOffset: {
                         width: 0,
@@ -214,6 +241,7 @@ export default function StepProgress({ navigation }) {
                     elevation: 11,
                     borderRadius: 10,
                     paddingLeft: 20,
+                    marginBottom: 20
                 }}>
                     <StepIndicator
                         customStyles={customStyles}
@@ -232,9 +260,12 @@ export default function StepProgress({ navigation }) {
                                         borderBottomColor: 'lightgray',
                                         paddingBottom: 7,
                                         paddingTop: 7,
+                                        position: 'relative'
                                     }}>
+
                                         <Text>Thời gian: </Text>
                                         <Text style={{ fontWeight: 'bold' }}>{data2[position].dateTime}</Text>
+
                                     </View>
                                     <View style={{
                                         display: 'flex',
@@ -271,10 +302,241 @@ export default function StepProgress({ navigation }) {
                                         <Text>Người thực hiện:</Text>
                                         <Text style={{ fontWeight: 'bold' }}>{data2[position].owner}</Text>
                                     </View>
+                                    {/* <Button
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-end',
+                                            backgroundColor: '#024f87',
+                                            width: 80,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            marginStart: 'auto'
+                                        }}
+                                        icon="cog-outline"
+
+                                        labelStyle={{
+                                            color: '#fff',
+                                            // fontSize: 20
+                                        }}
+                                        onPress={() => {
+                                            navigation.push('UpdateChariry')
+                                        }}
+                                    >
+                                        Sửa
+                                    </Button> */}
                                 </Pressable>
                             )
                         }}
-                        stepCount='3'
+                        stepCount='1'
+                    />
+                </View>
+                <View style={{
+                    paddingTop: 20,
+                    paddingBottom: 20,
+                    backgroundColor: '#fff',
+                    height: 200,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                        width: 0,
+                        height: 5,
+                    },
+                    shadowOpacity: 0.36,
+                    shadowRadius: 6.68,
+
+                    elevation: 11,
+                    borderRadius: 10,
+                    paddingLeft: 20,
+                    marginBottom: 20
+                }}>
+                    <StepIndicator
+                        customStyles={customStyles}
+                        labels={labels3}
+                        direction="vertical"
+                        renderLabel={({ position, stepStatus, label, crntPosition }) => {
+                            return (
+                                <Pressable style={styles.lblContainer} onPress={() => {
+                                    navigation.push("ActivityDetail")
+                                }}>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                        position: 'relative'
+                                    }}>
+
+                                        <Text>Thời gian: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data3[position].dateTime}</Text>
+
+                                    </View>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                    }}>
+                                        <Text>Số tiền đã chi: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data3[position].status.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VNĐ</Text>
+                                    </View>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7
+                                    }}>
+                                        <Text>Hoạt động: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data3[position].label}</Text>
+                                    </View>
+
+
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                    }}>
+                                        <Text>Người thực hiện:</Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data3[position].owner}</Text>
+                                    </View>
+                                    {/* <Button
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-end',
+                                            backgroundColor: '#024f87',
+                                            width: 80,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            marginStart: 'auto'
+                                        }}
+                                        icon="cog-outline"
+
+                                        labelStyle={{
+                                            color: '#fff',
+                                            // fontSize: 20
+                                        }}
+                                        onPress={() => {
+                                            navigation.push('UpdateChariry')
+                                        }}
+                                    >
+                                        Sửa
+                                    </Button> */}
+                                </Pressable>
+                            )
+                        }}
+                        stepCount='1'
+                    />
+                </View>
+                <View style={{
+                    paddingTop: 20,
+                    paddingBottom: 20,
+                    backgroundColor: '#fff',
+                    height: 200,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                        width: 0,
+                        height: 5,
+                    },
+                    shadowOpacity: 0.36,
+                    shadowRadius: 6.68,
+
+                    elevation: 11,
+                    borderRadius: 10,
+                    paddingLeft: 20,
+                }}>
+                    <StepIndicator
+                        customStyles={customStyles}
+                        labels={labels3}
+                        direction="vertical"
+                        renderLabel={({ position, stepStatus, label, crntPosition }) => {
+                            return (
+                                <Pressable style={styles.lblContainer} onPress={() => {
+                                    navigation.push("ActivityDetail")
+                                }}>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                        position: 'relative'
+                                    }}>
+
+                                        <Text>Thời gian: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data4[position].dateTime}</Text>
+
+                                    </View>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                    }}>
+                                        <Text>Số tiền đã chi: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data4[position].status.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VNĐ</Text>
+                                    </View>
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'lightgray',
+                                        paddingBottom: 7
+                                    }}>
+                                        <Text>Hoạt động: </Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data4[position].label}</Text>
+                                    </View>
+
+
+                                    <View style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        paddingBottom: 7,
+                                        paddingTop: 7,
+                                    }}>
+                                        <Text>Người thực hiện:</Text>
+                                        <Text style={{ fontWeight: 'bold' }}>{data4[position].owner}</Text>
+                                    </View>
+                                    {/* <Button
+                                        style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-end',
+                                            backgroundColor: '#024f87',
+                                            width: 80,
+                                            marginTop: 10,
+                                            marginBottom: 10,
+                                            marginStart: 'auto'
+                                        }}
+                                        icon="cog-outline"
+
+                                        labelStyle={{
+                                            color: '#fff',
+                                            // fontSize: 20
+                                        }}
+                                        onPress={() => {
+                                            navigation.push('UpdateChariry')
+                                        }}
+                                    >
+                                        Sửa
+                                    </Button> */}
+                                </Pressable>
+                            )
+                        }}
+                        stepCount='1'
                     />
                 </View>
             </View>

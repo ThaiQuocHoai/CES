@@ -13,9 +13,10 @@ const windowHeight = Dimensions.get('window').height;
 export default function SignupScreen({ navigation }) {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const [confirm, setConfirm] = useState("");
     const [secure, setSecure] = useState(true);
     return (
-        <View>
+        <ScrollView contentContainerStyle={{height: 680}}>
             <StatusBar backgroundColor="#013459" style="light" />
             <View style={{
                 backgroundColor: '#024f87',
@@ -160,19 +161,12 @@ export default function SignupScreen({ navigation }) {
                                         />
                                     )
                                 }
-                                value={password}
-                                onChangeText={(password) => setPassword(password)}
+                                value={confirm}
+                                onChangeText={(confirm) => setConfirm(confirm)}
                             />
                         </Surface>
                         {/* <View style={{ flexDirection: 'row' }}> */}
-                        <Pressable>
-                            <Text style={{
-                                margin: 10,
-
-                                color: '#1e88e5',
-                                fontSize: 13,
-                            }}>Quên mật khẩu ?</Text>
-                        </Pressable>
+                        
                         <Pressable
                             style={styles.buttonStyle}
                             onPress={() => {
@@ -233,7 +227,7 @@ export default function SignupScreen({ navigation }) {
                 </View>
 
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -243,7 +237,7 @@ const styles = StyleSheet.create({
     },
     buttonStyle: {
         backgroundColor: '#ff8224',
-        marginTop: 10,
+        marginTop: 40,
         height: 45,
         // width: 160,
         paddingTop: 11.3,

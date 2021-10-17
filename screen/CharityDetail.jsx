@@ -173,7 +173,7 @@ export default function CharityDetail({ navigation, route }) {
                     bottom: 100,
                     right: 30,
                     elevation: 99,
-                    backgroundColor: '#013459',
+                    backgroundColor: '#ff8224',
                     width: 60,
                     height: 60,
                     borderRadius: 50

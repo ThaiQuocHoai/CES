@@ -7,7 +7,7 @@ export default function Notify({ navigation }) {
     const data = [
         {
             name: 'Lê Tuấn Vũ',
-            avatar: 'https://images-ext-1.discordapp.net/external/1LVhXTnrhFqevdoc5GVdJOU9DkkbuinkNbsnX3LmT7k/https/lh5.googleusercontent.com/gCwD9XfgM3Ztbbfy9etvclfTRbYKqkWMQM3QZrQzijYk14jNrFQsPx0rgYWnnf1ZfAmb0uPIANh0AC7skyD5%3Dw1920-h913-rw?width=418&height=556',
+            avatar: 'https://scontent.xx.fbcdn.net/v/t1.15752-9/s403x403/246226675_4534604516599582_8634563701159754105_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=aee45a&_nc_ohc=l9TTmYnkUqkAX-Dt20C&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=c66445c46d4f98da5e93d95ad067ac43&oe=61933059',
             chienDich: 'Tiếp Tế Lương Thực Cho TP.HCM'
         },
         {

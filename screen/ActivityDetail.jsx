@@ -177,7 +177,7 @@ export default function ActivityDetail(props) {
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Tổng số tiền đã chi: </Text>
-                        142,500,000 VNĐ</Text>
+                        140,000,000 VNĐ</Text>
                 </View>
 
             </View>
@@ -205,7 +205,7 @@ export default function ActivityDetail(props) {
                     paddingBottom: 10
                 }}>
                     •  Vào lúc 5:00AM 19/09/2021 đã mua 1400 thùng mì giá 100.000VNĐ/thùng tại tạp hóa Thành Tín TP HCM.</Text>
-                <Text style={{
+                {/* <Text style={{
                     marginLeft: 50,
                     fontSize: 15,
                     paddingRight: 25,
@@ -218,7 +218,7 @@ export default function ActivityDetail(props) {
                     paddingRight: 25,
                     paddingBottom: 10
                 }}>
-                    •  Vào lúc 11:00AM 19/09/2021 đã mua 10 thùng nước suối tại tạp hoá Thành Tín cho đoàn công tác từ thiện.</Text>
+                    •  Vào lúc 11:00AM 19/09/2021 đã mua 10 thùng nước suối tại tạp hoá Thành Tín cho đoàn công tác từ thiện.</Text> */}
             </View>
 
             <View style={{

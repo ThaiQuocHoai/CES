@@ -856,7 +856,7 @@ export default function CreateActivity({ navigation }) {
 
                 }}>
                     <Pressable style={{
-                        backgroundColor: 'green',
+                        backgroundColor: '#ff8224',
                         width: 170,
                         height: 50,
                         borderRadius: 5

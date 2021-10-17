@@ -84,14 +84,15 @@ const styles = {
         height: 220
     },
     textStyles: {
-        fontSize: 15,
+        fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 10,
         padding: 10,
-        marginTop: 20
+        marginTop: 20,
+        color: '#000'
     },
     PressStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
         width: 350,
         height: 70,
         display: 'flex',
@@ -107,12 +108,15 @@ const styles = {
         shadowRadius: 5.46,
 
         elevation: 9,
+        borderColor: '#000',
+        borderWidth: 1
     },
     PressTextStyle: {
         textAlign: 'center',
         fontSize: 20,
         color: '#000',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        // color: '#fff'
     },
     PressView: {
         display: 'flex',
