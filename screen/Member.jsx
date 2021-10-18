@@ -28,7 +28,7 @@ const FirstRoute = () => (
                 <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={{ uri: 'https://i.pravatar.cc/300?img=3' }} />
                 <View>
                     <Text style={{ fontSize: 20, paddingLeft: 20 }}>Lê Duy Tuấn Vũ</Text>
-                    <Text style={{ fontSize: 12, paddingLeft: 20, fontStyle: 'italic' }}>Trưởng nhóm</Text>
+                    <Text style={{ fontSize: 12, paddingLeft: 20, fontStyle: 'italic' }}>Người phụ trách</Text>
                 </View>
             </Pressable>
             <Pressable style={{
@@ -83,7 +83,7 @@ const SecondRoute = () => (
                 <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={{ uri: 'https://i.pravatar.cc/300?img=3' }} />
                 <View>
                     <Text style={{ fontSize: 20, paddingLeft: 20 }}>Lê Duy Tuấn Vũ</Text>
-                    <Text style={{ fontSize: 12, paddingLeft: 20, fontStyle: 'italic' }}>Trưởng nhóm</Text>
+                    <Text style={{ fontSize: 12, paddingLeft: 20, fontStyle: 'italic' }}>Người phụ trách</Text>
                 </View>
             </Pressable>
         </View>

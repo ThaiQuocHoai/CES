@@ -83,7 +83,7 @@ export default function CharityDetail({ navigation, route }) {
                             lineHeight: 22,
                             marginLeft: 15
                         }}>
-                            • Nguời đại diện: <Text style={{ fontWeight: 'bold' }}>{item.owner}</Text>
+                            • Người phụ trách: <Text style={{ fontWeight: 'bold' }}>{item.owner}</Text>
                         </Text>
                         <Text style={{
                             marginTop: 10,

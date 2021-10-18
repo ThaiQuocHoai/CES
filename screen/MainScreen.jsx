@@ -31,7 +31,7 @@ const renderNhatKi = (navigation) => {
                 paddingTop: 7,
                 fontStyle: 'italic',
                 color: 'rgba(33,33,33,.7)'
-            }}>Đăng Bởi: <Text style={{
+            }}>Người phụ trách: <Text style={{
                 fontWeight: 'bold',
                 color: 'rgba(33,33,33,.7)'
             }}>{item.owner}</Text></Text>
