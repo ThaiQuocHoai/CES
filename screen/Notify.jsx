@@ -77,7 +77,7 @@ export default function Notify({ navigation }) {
                     }}>
                         <View>
                             <Text style={{
-                                width: 300,
+                                width: 250,
                                 lineHeight: 20
                             }}>Hoạt động của {item.name} đang chờ duyệt trong <Text style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{item.chienDich}</Text> </Text>
 

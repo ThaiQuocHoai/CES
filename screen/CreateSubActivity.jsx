@@ -215,7 +215,7 @@ export default function CreateSubActivity({ navigation }) {
                             <MaterialIcons name="campaign" size={24} color="#024f87" />
                             <Text style={{
                                 marginLeft: 5
-                            }}>Hoạt động</Text>
+                            }}>Hoạt động  <Text style={{ color: 'red' }}>*</Text></Text>
                         </View>
 
                         <SafeAreaView>
@@ -250,7 +250,7 @@ export default function CreateSubActivity({ navigation }) {
                     {value === 'khac' ? <View >
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
                         <MaterialIcons name="drive-file-rename-outline" size={24} color="#024f87" />
-                            <Text style={{ marginLeft: 5 }}>Tên hoạt động</Text>
+                            <Text style={{ marginLeft: 5 }}>Tên hoạt động  <Text style={{ color: 'red' }}>*</Text></Text>
                         </View>
                         <TextInput
                             style={{
@@ -395,7 +395,7 @@ export default function CreateSubActivity({ navigation }) {
                                 <Text style={{
                                     marginLeft: 5
                                 }}>
-                                    Hình ảnh
+                                    Hình ảnh  <Text style={{ color: 'red' }}>*</Text>
                                 </Text>
                             </View>
                             <View style={{

@@ -399,7 +399,7 @@ export default function BrowseActivityDetail({ navigation }) {
                                 }}
                                 onPress={() => {
                                     setModalVisible(!modalVisible);
-                                    navigation.push('BrowseActivity')
+                                    navigation.goBack('BrowseActivity')
                                 }}
                             >
                                 <Text style={{

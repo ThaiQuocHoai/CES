@@ -34,7 +34,19 @@ export default function MainScreen3({ navigation }) {
 
             <View style={styles.PressView}>
                 <Pressable style={styles.PressStyle} onPress={() => {
-                  navigation.navigate('Nhật kí');
+                    navigation.navigate('Detail', {
+                        item: {
+                            code: "covidhcm2021",
+                            title: "Tiếp Tế Lương Thực Cho TP.HCM",
+                            total: 305000000,
+                            owner: "Lê Duy Tuấn Vũ",
+                            date: "18/09/2021",
+                            imgURL:
+                                "https://static2.yan.vn/YanNews/2167221/202108/20210822_102423_nnel_optimized91f368de-3e2f830b.jpeg",
+                            status: "Đang tiến hành",
+                            progress: 50,
+                        },
+                    });
                 }}>
                     <View style={{
                         display: 'flex',
@@ -44,11 +56,11 @@ export default function MainScreen3({ navigation }) {
                             marginLeft: 20,
                             marginRight: 15
                         }} name="codesquareo" size={30} color="black" />
-                        <Text style={styles.PressTextStyle}>Chiến dịch đang tham gia</Text>
+                        <Text style={styles.PressTextStyle}>Chiến dịch đang tiến hành</Text>
                     </View>
                 </Pressable>
             </View>
-            <View style={styles.PressView}>
+            {/* <View style={styles.PressView}>
                 <Pressable style={styles.PressStyle} onPress={() => {
                   navigation.navigate('Nhật kí');
                 }}>
@@ -63,7 +75,7 @@ export default function MainScreen3({ navigation }) {
                         <Text style={styles.PressTextStyle}>Chiến dịch đã tham gia</Text>
                     </View>
                 </Pressable>
-            </View>
+            </View> */}
 
 
         </View>
@@ -108,8 +120,6 @@ const styles = {
         shadowRadius: 5.46,
 
         elevation: 9,
-        borderColor: '#000',
-        borderWidth: 1
     },
     PressTextStyle: {
         textAlign: 'center',

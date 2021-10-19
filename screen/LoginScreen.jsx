@@ -20,11 +20,12 @@ export default function LoginScreen({ navigation }) {
             <View style={{
                 backgroundColor: '#024f87',
                 height: '100%',
-                position: 'relative'
+                position: 'relative',
+                // marginTop: 30
             }}>
                 <Image source={logo} style={{
                     position: 'absolute',
-                    top: 20,
+                    top: 0,
                     left: 85,
                     width: 250,
                     height: 250

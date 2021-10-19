@@ -81,7 +81,7 @@ export default function CharityDetail({ navigation, route }) {
                             marginTop: 10,
                             fontSize: 15,
                             lineHeight: 22,
-                            marginLeft: 15
+                            marginLeft: 15,
                         }}>
                             • Người phụ trách: <Text style={{ fontWeight: 'bold' }}>{item.owner}</Text>
                         </Text>
@@ -132,14 +132,6 @@ export default function CharityDetail({ navigation, route }) {
                             marginLeft: 15
                         }}>
                             • Dự kiến hoàn thành chiến dịch: <Text style={{ fontWeight: 'bold' }}>10/10/2021</Text>
-                        </Text>
-                        <Text style={{
-                            marginTop: 10,
-                            fontSize: 15,
-                            lineHeight: 22,
-                            marginLeft: 15
-                        }}>
-                            • Lộ trình: <Text style={{ fontWeight: 'bold' }}>Xem chi tiết</Text>
                         </Text>
                     </View>
 
@@ -194,7 +186,7 @@ export default function CharityDetail({ navigation, route }) {
 
 const styles = StyleSheet.create({
     viewStyle: {
-        width: 370,
+        width: 355,
         backgroundColor: '#fff',
         shadowColor: "#000",
         shadowOffset: {

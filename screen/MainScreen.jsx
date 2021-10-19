@@ -11,7 +11,7 @@ const itemWidth = Dimensions.get('window').width;
 const renderNhatKi = (navigation) => {
     return nhatki.map((item, index) => {
         return <Pressable key={index} style={styles.container} onPress={() => {
-          navigation.push("Detail", {item: item});
+            navigation.push("Detail", { item: item });
         }}>
             <Image
                 source={{ uri: item.imgURL }}
@@ -39,21 +39,23 @@ const renderNhatKi = (navigation) => {
                 paddingLeft: 20,
                 paddingTop: 7,
                 fontStyle: 'italic',
+                // fontSize: 10,
+                color: 'rgba(33,33,33,.7)'
+            }}>Ngày bắt đầu: <Text style={{
+                // fontSize: 12,
+                fontWeight: 'bold',
+                color: 'rgba(33,33,33,.7)'
+            }}>{item.date}</Text></Text>
+            <Text style={{
+                paddingLeft: 20,
+                paddingTop: 7,
+                fontStyle: 'italic',
                 color: 'rgba(33,33,33,.7)'
             }}>Trạng thái: <Text style={{
                 fontWeight: 'bold',
                 color: 'rgba(33,33,33,.7)'
             }}>{item.status}</Text></Text>
-            <Text style={{
-                paddingLeft: 20,
-                paddingTop: 7,
-                fontStyle: 'italic',
-                fontSize: 10,
-                color: 'rgba(33,33,33,.7)'
-            }}>Ngày đăng: <Text style={{
-                fontSize: 12,
-                color: 'rgba(33,33,33,.7)'
-            }}>{item.date}</Text></Text>
+
             <Progress.Circle showsText color="green" formatText={() => {
                 return item.progress + "%"
             }} progress={item.progress / 100} size={70} width={500} style={{
@@ -75,7 +77,7 @@ const renderNhatKi = (navigation) => {
 }
 
 
-export default function MainScreen({navigation}) {
+export default function MainScreen({ navigation }) {
     return (
         <View>
             <ScrollView>
@@ -91,7 +93,7 @@ export default function MainScreen({navigation}) {
                         fontSize: 20,
                         fontWeight: 'bold',
                         color: 'rgba(33,33,33,.7)'
-                    }}>Các chiến dịch đang tham gia</Text>
+                    }}>Các chiến dịch của bạn</Text>
                 </View>
 
                 <View style={{
@@ -114,12 +116,12 @@ export default function MainScreen({navigation}) {
                 height: 60,
                 borderRadius: 50
             }} onPress={() => {
-              navigation.push('CreateActivity')
+                navigation.push('CreateActivity')
             }}>
                 <Text style={{
                     textAlign: 'center',
                     lineHeight: 60,
-                    
+
                 }}><AntDesign style={{
                     fontWeight: 'bold'
                 }} name="plus" size={35} color="white" /></Text>
