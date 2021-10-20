@@ -39,7 +39,8 @@ export default function StepProgress({ navigation }) {
             label: 'Thuê phương tiện',
             dateTime: '1:00 PM',
             status: 10000000,
-            owner: 'Nguyễn Văn An'
+            owner: 'Nguyễn Văn An',
+            link: 'ActivityDetail1'
         },
     ]
     const data2 = [
@@ -47,7 +48,8 @@ export default function StepProgress({ navigation }) {
             label: 'Mua lương thực',
             dateTime: '5:00 AM',
             status: 140000000,
-            owner: 'Đỗ Thị Thảo'
+            owner: 'Đỗ Thị Thảo',
+            link: 'ActivityDetail'
         },
     ]
     const data3 = [
@@ -55,7 +57,8 @@ export default function StepProgress({ navigation }) {
             label: 'Mua vật dụng đóng gói',
             dateTime: '7:00 AM',
             status: 2000000,
-            owner: 'Đỗ Thị Thảo'
+            owner: 'Đỗ Thị Thảo',
+            link: 'ActivityDetail'
         },
     ]
     const data4 = [
@@ -63,7 +66,8 @@ export default function StepProgress({ navigation }) {
             label: 'Chi phí phát sinh',
             dateTime: '11:00 AM',
             status: 500000,
-            owner: 'Đỗ Thị Thảo'
+            owner: 'Đỗ Thị Thảo',
+            link: 'ActivityDetail'
         },
     ]
 
@@ -120,7 +124,7 @@ export default function StepProgress({ navigation }) {
                         renderLabel={({ position, stepStatus, label, crntPosition }) => {
                             return (
                                 <Pressable style={styles.lblContainer} onPress={() => {
-                                    navigation.push("ActivityDetail")
+                                    navigation.push(data[position].link)
                                 }}>
                                     <View style={{
                                         display: 'flex',

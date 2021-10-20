@@ -4,36 +4,36 @@ import { ScrollView } from 'react-native-gesture-handler';
 import ImageView from "react-native-image-viewing";
 import { SimpleLineIcons, Ionicons, AntDesign, MaterialIcons, Feather } from '@expo/vector-icons';
 
-export default function ActivityDetail(props) {
+export default function ActivityDetail1(props) {
 
     const [visible, setIsVisible] = useState(false);
     const [index, setIndex] = useState(0);
 
     const images = [
         {
-            uri: "https://images-ext-1.discordapp.net/external/DHgkr_nCEBVoUn0FsFD0R3OXXT2vufE49aFyg3phwFM/%3Fq%3Dtbn%3AANd9GcTCSaVJVzQ--6QfWHYmy7vPwkpel14FAaVZjw%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://cdnmedia.baotintuc.vn/Upload/pTMF1jgWpbjY1m8G1xWUsg/files/2021/07/cactinhungho/binhthuanh13.jpg",
         },
         {
-            uri: "https://images-ext-1.discordapp.net/external/cdW_T_wG9YYREMrXy_hL8-v6vsU413f9x5QNyNkoCJo/%3Fq%3Dtbn%3AANd9GcQ-_wSZ1H1M0G0Q9emGHiEGqD5wAf7CIZ_zqhfJCNftEsNLzK4rD4_Pu1e7VjUqYWRM3Zc%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://info-imgs.vgcloud.vn/2020/10/22/18/am-ap-nhung-chuyen-xe-nghia-tinh-cho-hang-cuu-tro-huong-ve-mien-trung.jpg",
         },
         {
-            uri: "https://images-ext-2.discordapp.net/external/G9k5N0yeiJuI7Z6Hp0xzDP6TOhvw2JVFsoYgq5ShFN8/%3Fq%3Dtbn%3AANd9GcQXF_ST1VMxJZhPB8TBqYB_5ksAMpaWWy4Vqw%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images",
+            uri: "https://cdnmedia.baotintuc.vn/Upload/e9GdNZvHDFi8lZSWc6ubA/files/2020/10/xe-cuu-tro-281020a.jpeg",
         },
         {
-            uri: "https://images-ext-1.discordapp.net/external/-XJ8r8o7Kp7VWORk9hA2rOv34VJ14khK3_QiDLPNJlI/https/tieudung.vn/upload_images/images/2021/08/23/anh%25207%281%29.jpeg?width=783&height=557",
+            uri: "https://img.nhandan.com.vn/resize/600x-/Files/Images/2020/09/10/tr8-1599678065249.jpg",
         },
         {
             uri: "https://i.ytimg.com/vi/gv7-Px62pAw/maxresdefault.jpg",
         },
-        {
-            uri: "https://bizweb.dktcdn.net/100/057/061/articles/1-5d577fe7-41bb-4a48-a111-6c794eaca24a.jpg?v=1499325275443",
-        },
-        {
-            uri: "https://cdn.vietnambiz.vn/stores/news_dataimages/thuongnt/032018/05/06/tp-hcm-tap-hoa-truyen-thong-song-lay-lat-22-.7466.jpg",
-        },
-        {
-            uri: "https://images-ext-1.discordapp.net/external/Qq7qhGXcErrhPDUUDk6dAt_lk0sMS5XJs_ST-lAYfkE/https/dongsaigonplas.com/vnt_upload/File/06_2019/vi-tri-cua-hang.jpg",
-        },
+        // {
+        //     uri: "https://bizweb.dktcdn.net/100/057/061/articles/1-5d577fe7-41bb-4a48-a111-6c794eaca24a.jpg?v=1499325275443",
+        // },
+        // {
+        //     uri: "https://cdn.vietnambiz.vn/stores/news_dataimages/thuongnt/032018/05/06/tp-hcm-tap-hoa-truyen-thong-song-lay-lat-22-.7466.jpg",
+        // },
+        // {
+        //     uri: "https://images-ext-1.discordapp.net/external/Qq7qhGXcErrhPDUUDk6dAt_lk0sMS5XJs_ST-lAYfkE/https/dongsaigonplas.com/vnt_upload/File/06_2019/vi-tri-cua-hang.jpg",
+        // },
     ];
 
     const renderImageHeader = () => {
@@ -80,7 +80,7 @@ export default function ActivityDetail(props) {
                         <Image style={{ width: 100, height: 100 }} source={images[4]} />
 
                     </Pressable>
-                    <View style={{
+                    {/* <View style={{
                         position: 'absolute',
                         backgroundColor: '#000',
                         width: 100,
@@ -96,7 +96,7 @@ export default function ActivityDetail(props) {
                             paddingTop: 25,
                             paddingLeft: 25,
                         }}>+3</Text>
-                    </View>
+                    </View> */}
                 </Pressable>
             </View>
             <ImageView
@@ -143,7 +143,7 @@ export default function ActivityDetail(props) {
                     fontSize: 15,
                     paddingRight: 20
                 }}>
-                    230 đường Man Thiện, TP. thủ đức, TP. Hồ Chí Minh</Text>
+                    268 Tô Hiến Thành, Phường 15, Quận 10, Thành phố Hồ Chí Minh</Text>
             </View>
             <View style={{
                 paddingBottom: 10
@@ -159,7 +159,7 @@ export default function ActivityDetail(props) {
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Thời gian: </Text>
-                        19/09/2021</Text>
+                        18/09/2021</Text>
                 </View>
 
             </View>
@@ -177,7 +177,7 @@ export default function ActivityDetail(props) {
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Tổng số tiền đã chi: </Text>
-                        140,000,000 VNĐ</Text>
+                        10,000,000 VNĐ</Text>
                 </View>
 
             </View>
@@ -204,7 +204,7 @@ export default function ActivityDetail(props) {
                     paddingRight: 25,
                     paddingBottom: 10
                 }}>
-                    •  Vào lúc 5:00AM 19/09/2021 đã mua 1400 thùng mì giá 100.000VNĐ/thùng tại tạp hóa Thành Tín TP HCM.</Text>
+                    •  Vào lúc 5:00AM 18/09/2021 đã thuê 5 xe vận tải tại GOGOX để vận chuyển hàng hóa từ thiện.</Text>
                 {/* <Text style={{
                     marginLeft: 50,
                     fontSize: 15,
@@ -235,7 +235,7 @@ export default function ActivityDetail(props) {
                         marginLeft: 5,
                         fontSize: 15
                     }}><Text style={{ fontWeight: 'bold', }}>Người thực hiện: </Text>
-                        Đỗ Thị Thảo</Text>
+                        Nguyễn Văn An</Text>
                 </View>
 
             </View>

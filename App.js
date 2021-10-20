@@ -17,6 +17,7 @@ import BrowseActivityDetail from "./screen/BrowseActivityDetail";
 import PersonalInfo from "./screen/PersonalInfo";
 import SignupScreen from "./screen/SignupScreen";
 import UpdateCharity from "./screen/UpdateCharity";
+import ActivityDetail1 from "./screen/ActivityDetail1";
 
 const Stack = createStackNavigator();
 
@@ -62,6 +63,11 @@ export default function App() {
         <Stack.Screen
           name="ActivityDetail"
           component={ActivityDetail}
+          options={{ title: 'Chi tiết hoạt động' }}
+        />
+        <Stack.Screen
+          name="ActivityDetail1"
+          component={ActivityDetail1}
           options={{ title: 'Chi tiết hoạt động' }}
         />
         <Stack.Screen
