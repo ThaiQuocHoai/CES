@@ -124,7 +124,7 @@ export default function StepProgress({ navigation }) {
                         renderLabel={({ position, stepStatus, label, crntPosition }) => {
                             return (
                                 <Pressable style={styles.lblContainer} onPress={() => {
-                                    navigation.push(data[position].link)
+                                    navigation.push("ActivityDetail1")
                                 }}>
                                     <View style={{
                                         display: 'flex',

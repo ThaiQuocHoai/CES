@@ -467,7 +467,7 @@ export default function CreateSubActivity({ navigation }) {
                     }} onPress={async () => {
                         await Alert.alert(
                             "Thông báo",
-                            "Hoạt động của bạn đang chờ duyệt!",
+                            "Hoạt động của bạn tạo thành công!",
                         );
                         navigation.goBack('CharityDetail');
                     }
