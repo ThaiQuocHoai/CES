@@ -60,7 +60,7 @@ export default function MainScreen3({ navigation }) {
                     </View>
                 </Pressable>
             </View>
-            {/* <View style={styles.PressView}>
+            <View style={styles.PressView}>
                 <Pressable style={styles.PressStyle} onPress={() => {
                   navigation.navigate('Nhật kí');
                 }}>
@@ -72,10 +72,10 @@ export default function MainScreen3({ navigation }) {
                             marginLeft: 20,
                             marginRight: 15
                         }} name="codesquareo" size={30} color="black" />
-                        <Text style={styles.PressTextStyle}>Chiến dịch đã tham gia</Text>
+                        <Text style={styles.PressTextStyle}>Tất cả chiến dịch</Text>
                     </View>
                 </Pressable>
-            </View> */}
+            </View>
 
 
         </View>
