@@ -589,7 +589,7 @@ export default function CreateActivity({ navigation }) {
                         <View style={{
                             marginBottom: 10
                         }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            {/* <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                 <SimpleLineIcons name="note" size={24} color="#000" />
                                 <Text style={{
                                     marginLeft: 5
@@ -610,13 +610,13 @@ export default function CreateActivity({ navigation }) {
                                     borderRadius: 10
                                 }}
                                 placeholder="Nhập kế hoạch"
-                            />
+                            /> */}
                             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                 <SimpleLineIcons name="note" size={24} color="#000" />
                                 <Text style={{
                                     marginLeft: 5
                                 }}>
-                                    Chi tiết kế hoạch
+                                    Kế hoạch
                                 </Text>
                             </View>
                             {renderAllPlan()}

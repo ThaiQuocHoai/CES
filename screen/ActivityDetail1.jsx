@@ -158,7 +158,25 @@ export default function ActivityDetail1(props) {
 
                         marginLeft: 5,
                         fontSize: 15
-                    }}><Text style={{ fontWeight: 'bold', }}>Thời gian: </Text>
+                    }}><Text style={{ fontWeight: 'bold', }}>Thời gian bắt đầu: </Text>
+                        18/09/2021</Text>
+                </View>
+
+            </View>
+            <View style={{
+                paddingBottom: 10
+            }}>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    paddingLeft: 20
+                }}>
+                    <AntDesign name="clockcircleo" size={24} color="#0F6657" />
+                    <Text style={{
+
+                        marginLeft: 5,
+                        fontSize: 15
+                    }}><Text style={{ fontWeight: 'bold', }}>Thời gian hoàn thành: </Text>
                         18/09/2021</Text>
                 </View>
 
