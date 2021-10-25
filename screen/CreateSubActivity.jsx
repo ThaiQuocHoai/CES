@@ -523,7 +523,7 @@ export default function CreateSubActivity({ navigation }) {
                         </Picker>
                     </View>
                 </View>
-                {selectedValue === 'khac' ? <View >
+                {selectedValue === 'khac' ? <View style={{marginLeft: 20}}>
                     <Text>Mô tả hoạt động</Text>
                     <TextInput
                         style={{
@@ -923,7 +923,7 @@ export default function CreateSubActivity({ navigation }) {
                                 <View>
                                     <View style={{
                                         position: 'relative',
-                                        marginBottom: 10
+                                        marginBottom: 10,
                                     }}>
                                         <Text>Số lượng phần quà<Text style={{ color: '#d32f2f' }}>*</Text></Text>
                                         <TextInput
@@ -1286,7 +1286,7 @@ export default function CreateSubActivity({ navigation }) {
                                 </Picker>
                             </View>
                         </View>
-                        {selectedValue === 'khac' ? <View >
+                        {selectedValue === 'khac' ? <View style={{marginLeft: 20, marginTop: 10}}>
                             <Text>Mô tả hoạt động</Text>
                             <TextInput
                                 style={{
@@ -1687,7 +1687,9 @@ export default function CreateSubActivity({ navigation }) {
                                         <View>
                                             <View style={{
                                                 position: 'relative',
-                                                marginBottom: 10
+                                                marginBottom: 10,
+                                                marginLeft: 20,
+                                                marginTop: 10
                                             }}>
                                                 <Text>Số lượng phần quà<Text style={{ color: '#d32f2f' }}>*</Text></Text>
                                                 <TextInput
@@ -1707,7 +1709,7 @@ export default function CreateSubActivity({ navigation }) {
                                                 />
                                                 <Text style={{
                                                     position: 'absolute',
-                                                    right: 10,
+                                                    right: 40,
                                                     top: 40
                                                 }}>Phần</Text>
                                             </View>
