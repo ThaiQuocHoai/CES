@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Text, TextInput, View, Pressable, Alert, Image, ScrollView, SafeAreaView, LogBox } from 'react-native';
+import { Text, TextInput, View, Pressable, Alert, Image, ScrollView, Picker, LogBox, Button } from 'react-native';
 import { SimpleLineIcons, EvilIcons, MaterialIcons, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import moment from 'moment';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as ImagePicker from 'expo-image-picker';
 import RBSheet from "react-native-raw-bottom-sheet";
-import { AssetsSelector } from 'expo-images-picker'
-import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function CreateSubActivity({ navigation }) {
     const refRBSheet = useRef();
@@ -162,15 +160,1059 @@ export default function CreateSubActivity({ navigation }) {
         </View>
     }
 
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        { label: 'Mua sắm lương thực', value: 'doan' },
-        { label: 'Phát quà', value: 'qua' },
-        { label: 'Thuê phương tiện', value: 'phuongtien' },
-        { label: 'Tiền trợ cấp', value: 'trocap' },
-        { label: 'Hoạt động khác', value: 'khac' },
-    ]);
+    let [planList, setPlanList] = useState([]);
+    const onAddPlan = () => {
+        setPlanList(planList.concat(renderPlan()));
+    }
+    const onRemovePlan = (key) => {
+        let plan1 = [...planList];
+        const plans = plan1.splice(0, key);
+        setPlanList(plans);
+    }
+
+
+    const [selectedValue, setSelectedValue] = useState("");
+    const [selectedValue1, setSelectedValue1] = useState("");
+    const [selectedValue2, setSelectedValue2] = useState("");
+    const [selectedValue3, setSelectedValue3] = useState("");
+    const [selectedValue4, setSelectedValue4] = useState("");
+    const [selectedValueXe, setSelectedValueXe] = useState("");
+    const [selectedValueDiChuyen, setSelectedValueDiChuyen] = useState("");
+    const [selectedValueVanChuyen, setSelectedValueVanChuyen] = useState("");
+    const [selectedValueLoaiVanChuyen, setSelectedValueLoaiVanChuyen] = useState("");
+
+
+    const renderPlan = () => {
+        return "a";
+    }
+
+    const renderSubPlan = () => {
+        return "b";
+    }
+    let [subPlanList, setSubPlanList] = useState([]);
+    const onAddSubPlan = () => {
+        setSubPlanList(subPlanList.concat(renderSubPlan()));
+    }
+    const onRemoveSubPlan = (key) => {
+        // alert(key);
+        let plan1 = [...subPlanList];
+        // console.log(plan1)
+        const plans = plan1.splice(0, key);
+        setSubPlanList(plans);
+    }
+    const renderMove = () => {
+        return "c";
+    }
+    let [moveList, setMoveList] = useState([]);
+    const onAddMove = () => {
+        setMoveList(moveList.concat(renderMove()));
+    }
+    const onRemoveMove = (key) => {
+        // alert(key);
+        let plan1 = [...moveList];
+        // console.log(plan1)
+        const plans = plan1.splice(0, key);
+        setMoveList(plans);
+    }
+
+    const renderAllMove = () => {
+        return moveList.map((item, index) => {
+            return <View key={index} style={{
+                borderBottomWidth: 1,
+                borderBottomColor: 'gray',
+                width: 310,
+                paddingBottom: 10,
+                paddingTop: 10,
+                marginTop: 10,
+                marginLeft: 20
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
+                }}>
+
+                    <Text>Phương tiện <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                    <Pressable onPress={() => {
+                        // alert(index)
+                        onRemoveMove(index);
+                    }}>
+                        <Ionicons name="ios-close-circle-outline" size={30} color="black" />
+                    </Pressable>
+                </View>
+                <View style={{
+                    borderWidth: 1,
+                    borderColor: 'gray',
+                    width: 310,
+                    marginTop: 10,
+                    borderRadius: 10,
+                    marginBottom: 10,
+                    height: 40,
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
+                    <Picker
+                        selectedValue={selectedValueXe}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValueXe(itemValue)}
+                        pickerStyleType={{
+                            paddingBottom: 10
+                        }}
+                    >
+                        <Picker.Item label="Chọn phương tiện" value="chondonvi" />
+                        <Picker.Item label="Phương tiện di chuyển" value="dichuyen" />
+                        <Picker.Item label="Phương tiện vận chuyển" value="vanchuyen" />
+                    </Picker>
+                </View>
+
+                <View>
+                    {selectedValueXe === 'dichuyen' ?
+                        <>
+                            <View style={{
+                                flexDirection: 'row',
+
+                            }}>
+                                <View>
+                                    <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <View style={{
+                                        borderWidth: 1,
+                                        borderColor: 'gray',
+                                        width: 150,
+                                        marginTop: 10,
+                                        borderRadius: 10,
+                                        marginBottom: 10,
+                                        height: 40,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Picker
+                                            selectedValue={selectedValueDiChuyen}
+                                            onValueChange={(itemValue, itemIndex) => setSelectedValueDiChuyen(itemValue)}
+                                            pickerStyleType={{
+                                                paddingBottom: 10
+                                            }}
+                                        >
+                                            <Picker.Item label="Chọn loại xe" value="loaidichuyen" />
+                                            <Picker.Item label="Xe 4 chỗ" value="4cho" />
+                                            <Picker.Item label="Xe 7 chỗ" value="7cho" />
+                                            <Picker.Item label="Xe 16 chỗ" value="16cho" />
+                                            <Picker.Item label="Xe 24 chỗ" value="24cho" />
+                                            <Picker.Item label="Xe khác" value="dichuyenkhac" />
+                                        </Picker>
+                                    </View>
+                                </View>
+                                <View style={{
+                                    marginLeft: 10,
+                                    position: 'relative'
+                                }}>
+                                    <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <TextInput
+                                        style={{
+                                            borderColor: 'gray',
+                                            width: 150,
+                                            height: 40,
+                                            borderWidth: 1,
+                                            paddingLeft: 15,
+                                            paddingRight: 70,
+                                            marginTop: 10,
+                                            // marginLeft: 20,
+                                            borderRadius: 10
+                                        }}
+                                        placeholder="Số lượng"
+                                        keyboardType="numeric"
+                                    />
+                                    <Text style={{
+                                        position: 'absolute',
+                                        right: 10,
+                                        top: 40
+                                    }}>Chiếc</Text>
+                                </View>
+
+                            </View>
+                            {selectedValueDiChuyen === 'dichuyenkhac' ?
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <TextInput
+                                        style={{
+                                            borderColor: 'gray',
+                                            width: 310,
+                                            height: 40,
+                                            borderWidth: 1,
+                                            paddingLeft: 15,
+                                            paddingRight: 70,
+                                            marginTop: 10,
+                                            // marginLeft: 20,
+                                            borderRadius: 10
+                                        }}
+                                        placeholder="Nhập loại xe khác"
+                                    />
+                                </View> : null
+                            }
+                        </>
+                        :
+                        <>
+
+                            <View>
+                                <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    marginTop: 10,
+                                    borderRadius: 10,
+                                    marginBottom: 10,
+                                    height: 40,
+                                    flexDirection: 'column',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Picker
+                                        selectedValue={selectedValueVanChuyen}
+                                        onValueChange={(itemValue, itemIndex) => setSelectedValueVanChuyen(itemValue)}
+                                        pickerStyleType={{
+                                            paddingBottom: 10
+                                        }}
+                                    >
+                                        <Picker.Item label="Chọn loại xe" value="loaivanchuyen" />
+                                        <Picker.Item label="Xe tải thùng kín" value="thungkin" />
+                                        <Picker.Item label="Xe tải thùng phủ mui bạt" value="thung" />
+                                        <Picker.Item label="Xe tải đông lạnh" value="donglanh" />
+                                        <Picker.Item label="Xe khác" value="vanchuyenkhac" />
+
+                                    </Picker>
+                                </View>
+                            </View>
+                            {selectedValueVanChuyen === 'vanchuyenkhac' ?
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <TextInput
+                                        style={{
+                                            borderColor: 'gray',
+                                            width: 310,
+                                            height: 40,
+                                            borderWidth: 1,
+                                            paddingLeft: 15,
+                                            paddingRight: 70,
+                                            marginTop: 10,
+                                            // marginLeft: 20,
+                                            borderRadius: 10
+                                        }}
+                                        placeholder="Nhập loại xe khác"
+                                    />
+                                </View> : null
+                            }
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{
+                                    position: 'relative'
+                                }}>
+                                    <Text>Trọng tải <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <View style={{
+                                        borderWidth: 1,
+                                        borderColor: 'gray',
+                                        width: 160,
+                                        marginTop: 10,
+                                        borderRadius: 10,
+                                        marginBottom: 10,
+                                        height: 40,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Picker
+                                            selectedValue={selectedValueLoaiVanChuyen}
+                                            onValueChange={(itemValue, itemIndex) => setSelectedValueLoaiVanChuyen(itemValue)}
+                                            pickerStyleType={{
+                                                paddingBottom: 10
+                                            }}
+                                        >
+                                            <Picker.Item label="Chọn trọng tải xe" value="loaixevanchuyen" />
+                                            <Picker.Item label="0.5 - 1 Tấn" value="1tan" />
+                                            <Picker.Item label="2 - 6 Tấn" value="6tan" />
+                                            <Picker.Item label="7 - 15 Tấn" value="15tan" />
+                                            <Picker.Item label="Trên 15 tấn" value="tren15" />
+
+                                        </Picker>
+                                    </View>
+                                </View>
+
+                                <View style={{
+                                    marginLeft: 10,
+                                    position: 'relative'
+                                }}>
+                                    <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <TextInput
+                                        style={{
+                                            borderColor: 'gray',
+                                            width: 130,
+                                            height: 40,
+                                            borderWidth: 1,
+                                            paddingLeft: 15,
+                                            paddingRight: 70,
+                                            marginTop: 10,
+                                            // marginLeft: 20,
+                                            borderRadius: 10
+                                        }}
+                                        placeholder="Số lượng"
+                                        keyboardType="numeric"
+                                    />
+                                    <Text style={{
+                                        position: 'absolute',
+                                        right: 10,
+                                        top: 40
+                                    }}>Chiếc</Text>
+                                </View>
+                            </View>
+
+                        </>
+
+                    }
+                </View>
+
+            </View>
+        })
+    }
+
+    const renderAllPlan = () => {
+        return planList.map((item, index) => {
+            return <View key={index} style={{
+                margin: 10,
+                marginLeft: 20,
+                marginRight: 20,
+                borderBottomWidth: 1,
+                borderBottomColor: 'lightgray',
+                borderStyle: 'dashed',
+                position: 'relative'
+            }}>
+                <Pressable style={{
+                    position: 'absolute',
+                    top: 5,
+                    right: 10
+                }} onPress={() => {
+                    onRemovePlan(index);
+                }}>
+                    <Ionicons name="ios-close-circle-outline" size={40} color="black" />
+                </Pressable>
+                <Text style={{
+                    marginBottom: 10,
+                    fontSize: 15,
+                    fontWeight: 'bold'
+                }}>Hoạt động {index + 1}</Text>
+
+                <View style={{ marginTop: 10 }}>
+                    <Text>Hoạt động <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                    <View style={{
+                        borderWidth: 1,
+                        borderColor: 'gray',
+                        width: 310,
+                        marginTop: 10,
+                        borderRadius: 10,
+                        marginBottom: 10,
+                        height: 40,
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                    }}>
+                        <Picker
+                            selectedValue={selectedValue}
+                            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                            pickerStyleType={{
+                                paddingBottom: 10
+                            }}
+                        >
+                            <Picker.Item label="Chọn hoạt động" value="chonhd" />
+                            <Picker.Item label="Mua lương thực" value="doan" />
+                            <Picker.Item label="Phát quà" value="qua" />
+                            <Picker.Item label="Thuê phương tiện" value="phuongtien" />
+                            <Picker.Item label="Tiền trợ cấp" value="trocap" />
+                            <Picker.Item label="Hoạt động khác" value="khac" />
+                        </Picker>
+                    </View>
+                </View>
+                {selectedValue === 'khac' ? <View >
+                    <Text>Mô tả hoạt động</Text>
+                    <TextInput
+                        style={{
+                            borderColor: 'gray',
+                            width: 310,
+                            // height: 40,
+                            borderWidth: 1,
+                            paddingLeft: 15,
+                            paddingRight: 20,
+                            marginTop: 10,
+                            marginBottom: 10,
+                            // marginLeft: 20,
+                            borderRadius: 10,
+                            flexDirection: 'column',
+                            justifyContent: 'flex-start'
+                        }}
+                        placeholder="Nhập mô tả hoạt động"
+                        multiline={true}
+                        numberOfLines={5}
+                    />
+                </View> :
+                    selectedValue === 'doan' ?
+                        <View>
+                            <View style={{
+                                borderBottomWidth: 1,
+                                borderBottomColor: 'gray',
+                                borderStyle: 'dotted',
+                                width: 310,
+                                paddingBottom: 10
+                            }}>
+                                <Text>Loại lương thực <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                <View style={{
+                                    borderWidth: 1,
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    marginTop: 10,
+                                    borderRadius: 10,
+                                    marginBottom: 10,
+                                    height: 40,
+                                    flexDirection: 'column',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Picker
+                                        selectedValue={selectedValue1}
+                                        onValueChange={(itemValue, itemIndex) => {
+                                            setSelectedValue1(itemValue)
+                                            if (itemValue === 'gao' || itemValue === 'rau') {
+                                                setSelectedValue2('kg');
+                                            } else if (itemValue === 'mi') {
+                                                setSelectedValue2('thung');
+                                            } else if (itemValue === 'trung') {
+                                                setSelectedValue2('vi');
+                                            }
+                                        }
+                                        }
+                                        pickerStyleType={{
+                                            paddingBottom: 10
+                                        }}
+                                    >
+                                        <Picker.Item label="Chọn loại lương thực" value="loailuongthuc" />
+                                        <Picker.Item label="Gạo" value="gao" />
+                                        <Picker.Item label="Rau củ" value="rau" />
+                                        <Picker.Item label="Mì" value="mi" />
+                                        <Picker.Item label="Trứng" value="trung" />
+                                        <Picker.Item label="Loại khác" value="loaikhac" />
+                                    </Picker>
+                                </View>
+                                {selectedValue1 === 'loaikhac' ? <>
+                                    <Text>Hoạt động khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <TextInput
+                                        style={{
+                                            borderColor: 'gray',
+                                            width: 310,
+                                            height: 40,
+                                            borderWidth: 1,
+                                            paddingLeft: 15,
+                                            paddingRight: 20,
+                                            marginTop: 10,
+                                            // marginLeft: 20,
+                                            borderRadius: 10
+                                        }}
+                                        placeholder="Nhập loại lương thực khác"
+                                    />
+                                </> : null}
+                                <View style={{
+                                    flexDirection: 'row'
+                                }}>
+                                    <View>
+                                        <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                        <TextInput
+                                            style={{
+                                                borderColor: 'gray',
+                                                width: 150,
+                                                height: 40,
+                                                borderWidth: 1,
+                                                paddingLeft: 15,
+                                                paddingRight: 20,
+                                                marginTop: 10,
+                                                // marginLeft: 20,
+                                                borderRadius: 10,
+                                            }}
+                                            placeholder="Nhập số lượng"
+                                            keyboardType="numeric"
+                                        />
+                                    </View>
+                                    <View style={{
+                                        marginLeft: 10
+                                    }}>
+                                        <Text>Đơn vị <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                        {selectedValue1 !== 'loaikhac' ? <>
+                                            <View style={{
+                                                borderWidth: 1,
+                                                borderColor: 'gray',
+                                                width: 150,
+                                                marginTop: 10,
+                                                borderRadius: 10,
+                                                marginBottom: 10,
+                                                height: 40,
+                                                flexDirection: 'column',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Picker
+                                                    selectedValue={selectedValue2}
+                                                    onValueChange={(itemValue, itemIndex) => setSelectedValue2(itemValue)}
+                                                    pickerStyleType={{
+                                                        paddingBottom: 10
+                                                    }}
+                                                >
+                                                    <Picker.Item label="Chọn đơn vị" value="chondonvi" />
+                                                    <Picker.Item label="Kg" value="kg" />
+                                                    <Picker.Item label="Vỉ" value="vi" />
+                                                    <Picker.Item label="Thùng" value="thung" />
+                                                </Picker>
+                                            </View>
+                                        </> : <TextInput
+                                            style={{
+                                                borderColor: 'gray',
+                                                width: 150,
+                                                height: 40,
+                                                borderWidth: 1,
+                                                paddingLeft: 15,
+                                                paddingRight: 20,
+                                                marginTop: 10,
+                                                // marginLeft: 20,
+                                                borderRadius: 10,
+                                            }}
+                                            placeholder="Nhập đơn vị"
+                                        />}
+                                    </View>
+                                </View>
+                            </View>
+                            
+                                {renderAllSubPlan()}
+                            
+
+                        </View> :
+                        selectedValue === 'phuongtien' ?
+                            <View >
+                                <View style={{
+                                    borderBottomWidth: 1,
+                                    borderBottomColor: 'gray',
+                                    width: 310,
+                                    paddingBottom: 10,
+                                    marginLeft: 20
+                                }}>
+                                    <Text>Phương tiện <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                    <View style={{
+                                        borderWidth: 1,
+                                        borderColor: 'gray',
+                                        width: 310,
+                                        marginTop: 10,
+                                        borderRadius: 10,
+                                        marginBottom: 10,
+                                        height: 40,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        <Picker
+                                            selectedValue={selectedValueXe}
+                                            onValueChange={(itemValue, itemIndex) => setSelectedValueXe(itemValue)}
+                                            pickerStyleType={{
+                                                paddingBottom: 10
+                                            }}
+                                        >
+                                            <Picker.Item label="Chọn phương tiện" value="chondonvi" />
+                                            <Picker.Item label="Phương tiện di chuyển" value="dichuyen" />
+                                            <Picker.Item label="Phương tiện vận chuyển" value="vanchuyen" />
+                                        </Picker>
+                                    </View>
+
+                                    <View>
+                                        {selectedValueXe === 'dichuyen' ?
+                                            <>
+                                                <View style={{
+                                                    flexDirection: 'row',
+
+                                                }}>
+                                                    <View>
+                                                        <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <View style={{
+                                                            borderWidth: 1,
+                                                            borderColor: 'gray',
+                                                            width: 150,
+                                                            marginTop: 10,
+                                                            borderRadius: 10,
+                                                            marginBottom: 10,
+                                                            height: 40,
+                                                            flexDirection: 'column',
+                                                            justifyContent: 'center'
+                                                        }}>
+                                                            <Picker
+                                                                selectedValue={selectedValueDiChuyen}
+                                                                onValueChange={(itemValue, itemIndex) => setSelectedValueDiChuyen(itemValue)}
+                                                                pickerStyleType={{
+                                                                    paddingBottom: 10
+                                                                }}
+                                                            >
+                                                                <Picker.Item label="Chọn loại xe" value="loaidichuyen" />
+                                                                <Picker.Item label="Xe 4 chỗ" value="4cho" />
+                                                                <Picker.Item label="Xe 7 chỗ" value="7cho" />
+                                                                <Picker.Item label="Xe 16 chỗ" value="16cho" />
+                                                                <Picker.Item label="Xe 24 chỗ" value="24cho" />
+                                                                <Picker.Item label="Xe khác" value="dichuyenkhac" />
+                                                            </Picker>
+                                                        </View>
+                                                    </View>
+                                                    <View style={{
+                                                        marginLeft: 10,
+                                                        position: 'relative'
+                                                    }}>
+                                                        <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <TextInput
+                                                            style={{
+                                                                borderColor: 'gray',
+                                                                width: 150,
+                                                                height: 40,
+                                                                borderWidth: 1,
+                                                                paddingLeft: 15,
+                                                                paddingRight: 70,
+                                                                marginTop: 10,
+                                                                // marginLeft: 20,
+                                                                borderRadius: 10
+                                                            }}
+                                                            placeholder="Số lượng"
+                                                            keyboardType="numeric"
+                                                        />
+                                                        <Text style={{
+                                                            position: 'absolute',
+                                                            right: 10,
+                                                            top: 40
+                                                        }}>Chiếc</Text>
+                                                    </View>
+
+                                                </View>
+                                                {selectedValueDiChuyen === 'dichuyenkhac' ?
+                                                    <View style={{ marginBottom: 10 }}>
+                                                        <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <TextInput
+                                                            style={{
+                                                                borderColor: 'gray',
+                                                                width: 310,
+                                                                height: 40,
+                                                                borderWidth: 1,
+                                                                paddingLeft: 15,
+                                                                paddingRight: 70,
+                                                                marginTop: 10,
+                                                                // marginLeft: 20,
+                                                                borderRadius: 10
+                                                            }}
+                                                            placeholder="Nhập loại xe khác"
+                                                        />
+                                                    </View> : null
+                                                }
+                                            </>
+                                            :
+                                            <>
+
+                                                <View>
+                                                    <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                    <View style={{
+                                                        borderWidth: 1,
+                                                        borderColor: 'gray',
+                                                        width: 310,
+                                                        marginTop: 10,
+                                                        borderRadius: 10,
+                                                        marginBottom: 10,
+                                                        height: 40,
+                                                        flexDirection: 'column',
+                                                        justifyContent: 'center'
+                                                    }}>
+                                                        <Picker
+                                                            selectedValue={selectedValueVanChuyen}
+                                                            onValueChange={(itemValue, itemIndex) => setSelectedValueVanChuyen(itemValue)}
+                                                            pickerStyleType={{
+                                                                paddingBottom: 10
+                                                            }}
+                                                        >
+                                                            <Picker.Item label="Chọn loại xe" value="loaivanchuyen" />
+                                                            <Picker.Item label="Xe tải thùng kín" value="thungkin" />
+                                                            <Picker.Item label="Xe tải thùng phủ mui bạt" value="thung" />
+                                                            <Picker.Item label="Xe tải đông lạnh" value="donglanh" />
+                                                            <Picker.Item label="Xe khác" value="vanchuyenkhac" />
+
+                                                        </Picker>
+                                                    </View>
+                                                </View>
+                                                {selectedValueVanChuyen === 'vanchuyenkhac' ?
+                                                    <View style={{ marginBottom: 10 }}>
+                                                        <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <TextInput
+                                                            style={{
+                                                                borderColor: 'gray',
+                                                                width: 310,
+                                                                height: 40,
+                                                                borderWidth: 1,
+                                                                paddingLeft: 15,
+                                                                paddingRight: 70,
+                                                                marginTop: 10,
+                                                                // marginLeft: 20,
+                                                                borderRadius: 10
+                                                            }}
+                                                            placeholder="Nhập loại xe khác"
+                                                        />
+                                                    </View> : null
+                                                }
+                                                <View style={{ flexDirection: 'row' }}>
+                                                    <View style={{
+                                                        position: 'relative'
+                                                    }}>
+                                                        <Text>Trọng tải <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <View style={{
+                                                            borderWidth: 1,
+                                                            borderColor: 'gray',
+                                                            width: 160,
+                                                            marginTop: 10,
+                                                            borderRadius: 10,
+                                                            marginBottom: 10,
+                                                            height: 40,
+                                                            flexDirection: 'column',
+                                                            justifyContent: 'center'
+                                                        }}>
+                                                            <Picker
+                                                                selectedValue={selectedValueLoaiVanChuyen}
+                                                                onValueChange={(itemValue, itemIndex) => setSelectedValueLoaiVanChuyen(itemValue)}
+                                                                pickerStyleType={{
+                                                                    paddingBottom: 10
+                                                                }}
+                                                            >
+                                                                <Picker.Item label="Chọn trọng tải xe" value="loaixevanchuyen" />
+                                                                <Picker.Item label="0.5 - 1 Tấn" value="1tan" />
+                                                                <Picker.Item label="2 - 6 Tấn" value="6tan" />
+                                                                <Picker.Item label="7 - 15 Tấn" value="15tan" />
+                                                                <Picker.Item label="Trên 15 tấn" value="tren15" />
+
+                                                            </Picker>
+                                                        </View>
+                                                    </View>
+
+                                                    <View style={{
+                                                        marginLeft: 10,
+                                                        position: 'relative'
+                                                    }}>
+                                                        <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                        <TextInput
+                                                            style={{
+                                                                borderColor: 'gray',
+                                                                width: 130,
+                                                                height: 40,
+                                                                borderWidth: 1,
+                                                                paddingLeft: 15,
+                                                                paddingRight: 70,
+                                                                marginTop: 10,
+                                                                // marginLeft: 20,
+                                                                borderRadius: 10
+                                                            }}
+                                                            placeholder="Số lượng"
+                                                            keyboardType="numeric"
+                                                        />
+                                                        <Text style={{
+                                                            position: 'absolute',
+                                                            right: 10,
+                                                            top: 40
+                                                        }}>Chiếc</Text>
+                                                    </View>
+                                                </View>
+
+                                            </>
+
+                                        }
+                                    </View>
+                                </View>
+                                {renderAllMove()}
+                            </View>
+
+                            :
+                            selectedValue === 'qua' ?
+                                <View>
+                                    <View style={{
+                                        position: 'relative',
+                                        marginBottom: 10
+                                    }}>
+                                        <Text>Số lượng phần quà<Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                        <TextInput
+                                            style={{
+                                                borderColor: 'gray',
+                                                width: 310,
+                                                height: 40,
+                                                borderWidth: 1,
+                                                paddingLeft: 15,
+                                                paddingRight: 70,
+                                                marginTop: 10,
+                                                // marginLeft: 20,
+                                                borderRadius: 10
+                                            }}
+                                            placeholder="Nhập số lượng phần quà"
+                                            keyboardType="numeric"
+                                        />
+                                        <Text style={{
+                                            position: 'absolute',
+                                            right: 10,
+                                            top: 40
+                                        }}>Phần</Text>
+                                    </View>
+                                </View>
+                                : null
+                }
+
+                {selectedValue === 'doan' ?
+                    <View style={{ width: 310, marginBottom: 10, marginTop: 20 }}>
+                        <Button title="Thêm loại lương thực" onPress={() => {
+                            onAddSubPlan();
+                        }} />
+                    </View>
+                    : selectedValue === 'phuongtien' ?
+                        <View style={{ width: 310, marginBottom: 10, marginTop: 20 }}>
+                            <Button title="Thêm loại xe" onPress={() => {
+                                onAddMove();
+                            }} />
+                        </View> : null
+
+                }
+
+                <Text>Địa điểm thực hiện hoạt động <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                <TextInput
+                    style={{
+                        borderColor: 'gray',
+                        width: 310,
+                        height: 40,
+                        borderWidth: 1,
+                        paddingLeft: 15,
+                        paddingRight: 20,
+                        marginTop: 10,
+                        // marginLeft: 20,
+                        borderRadius: 10
+                    }}
+                    placeholder="Nhập địa điểm"
+                />
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginTop: 10
+                }}>
+
+                    <View>
+                        <Text>Thời gian <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                        <Pressable onPress={showDatePicker2}>
+                            <Text style={{
+                                borderWidth: 1,
+                                borderColor: 'gray',
+                                width: 110,
+                                height: 40,
+                                borderRadius: 10,
+                                paddingTop: 10,
+                                color: '#000',
+                                textAlign: 'center',
+                                marginTop: 10
+                            }}>
+                                {moment(dateChoose2).format('DD/MM/YYYY')}
+                            </Text>
+                        </Pressable>
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible2}
+                            mode="date"
+                            onConfirm={handleConfirm2}
+                            onCancel={hideDatePicker2}
+                            date={dateChoose2}
+                        />
+                    </View>
+                    <View style={{
+                        marginLeft: 10,
+                        position: 'relative'
+                    }}>
+                        <Text>Số tiền dự tính <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                        <TextInput
+                            style={{
+                                borderColor: 'gray',
+                                width: 180,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 70,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                            }}
+                            placeholder="Nhập số tiền"
+                            keyboardType="numeric"
+                        />
+                        <Text style={{
+                            position: 'absolute',
+                            right: 10,
+                            top: 40
+                        }}>VND</Text>
+                    </View>
+
+                </View>
+                <View style={{
+                    marginTop: 10,
+                    marginBottom: 20
+                }}>
+                    <Text>Người phụ trách <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                    <TextInput
+                        style={{
+                            borderColor: 'gray',
+                            width: 310,
+                            height: 40,
+                            borderWidth: 1,
+                            paddingLeft: 15,
+                            paddingRight: 20,
+                            marginTop: 10,
+                            // marginLeft: 20,
+                            borderRadius: 10
+                        }}
+                        placeholder="Nhập họ và tên"
+                    />
+                </View>
+            </View>
+        })
+    }
+    const renderAllSubPlan = () => {
+        return subPlanList.map((item, index) => {
+            return <View key={index} style={{
+                borderBottomWidth: 1,
+                borderBottomColor: 'gray',
+                borderStyle: 'dotted',
+                width: 310,
+                paddingBottom: 10,
+                paddingTop: 10,
+                position: 'relative',
+                marginLeft: 20
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                }}>
+
+                    <Text>Loại lương thực <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                    <Pressable onPress={() => {
+                        // alert(index)
+                        onRemoveSubPlan(index);
+                    }}>
+                        <Ionicons name="ios-close-circle-outline" size={30} color="black" />
+                    </Pressable>
+                </View>
+                <View style={{
+                    borderWidth: 1,
+                    borderColor: 'gray',
+                    width: 310,
+                    marginTop: 10,
+                    borderRadius: 10,
+                    marginBottom: 10,
+                    height: 40,
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
+                    <Picker
+                        selectedValue={selectedValue3}
+                        onValueChange={(itemValue, itemIndex) => {
+                            setSelectedValue3(itemValue)
+                            if (itemValue === 'gao' || itemValue === 'rau') {
+                                setSelectedValue4('kg');
+                            } else if (itemValue === 'mi') {
+                                setSelectedValue4('thung');
+                            } else if (itemValue === 'trung') {
+                                setSelectedValue4('vi');
+                            }
+                        }
+                        }
+                        pickerStyleType={{
+                            paddingBottom: 10
+                        }}
+                    >
+                        <Picker.Item label="Chọn loại lương thực" value="loailuongthuc" />
+                        <Picker.Item label="Gạo" value="gao" />
+                        <Picker.Item label="Rau củ" value="rau" />
+                        <Picker.Item label="Mì" value="mi" />
+                        <Picker.Item label="Trứng" value="trung" />
+                        <Picker.Item label="Loại khác" value="loaikhac" />
+                    </Picker>
+                </View>
+                {selectedValue1 === 'loaikhac' ? <>
+                    <Text>Hoạt động khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                    <TextInput
+                        style={{
+                            borderColor: 'gray',
+                            width: 310,
+                            height: 40,
+                            borderWidth: 1,
+                            paddingLeft: 15,
+                            paddingRight: 20,
+                            marginTop: 10,
+                            // marginLeft: 20,
+                            borderRadius: 10
+                        }}
+                        placeholder="Nhập loại lương thực khác"
+                    />
+                </> : null}
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <View>
+                        <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                        <TextInput
+                            style={{
+                                borderColor: 'gray',
+                                width: 150,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                            }}
+                            placeholder="Nhập số lượng"
+                            keyboardType="numeric"
+                        />
+                    </View>
+                    <View style={{
+                        marginLeft: 10
+                    }}>
+                        <Text>Đơn vị <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                        {selectedValue1 !== 'loaikhac' ? <>
+                            <View style={{
+                                borderWidth: 1,
+                                borderColor: 'gray',
+                                width: 150,
+                                marginTop: 10,
+                                borderRadius: 10,
+                                marginBottom: 10,
+                                height: 40,
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                <Picker
+                                    selectedValue={selectedValue4}
+                                    onValueChange={(itemValue, itemIndex) => setSelectedValue4(itemValue)}
+                                    pickerStyleType={{
+                                        paddingBottom: 10
+                                    }}
+                                >
+                                    <Picker.Item label="Chọn đơn vị" value="chondonvi" />
+                                    <Picker.Item label="Kg" value="kg" />
+                                    <Picker.Item label="Vỉ" value="vi" />
+                                    <Picker.Item label="Thùng" value="thung" />
+                                </Picker>
+                            </View>
+                        </> : <TextInput
+                            style={{
+                                borderColor: 'gray',
+                                width: 150,
+                                height: 40,
+                                borderWidth: 1,
+                                paddingLeft: 15,
+                                paddingRight: 20,
+                                marginTop: 10,
+                                // marginLeft: 20,
+                                borderRadius: 10,
+                            }}
+                            placeholder="Nhập đơn vị"
+                        />}
+                    </View>
+                </View>
+            </View>
+        })
+    }
+
+
+
 
     return (
         <ScrollView>
@@ -210,65 +1252,485 @@ export default function CreateSubActivity({ navigation }) {
                 }}>
 
                     <View style={{ marginTop: 10 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+                        <View style={{ marginTop: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
+                                <MaterialIcons name="campaign" size={24} color="#024f87" />
+                                <Text>Hoạt động <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                            </View>
 
-                            <MaterialIcons name="campaign" size={24} color="#024f87" />
-                            <Text style={{
-                                marginLeft: 5
-                            }}>Hoạt động  <Text style={{ color: 'red' }}>*</Text></Text>
-                        </View>
-
-                        <SafeAreaView>
-                            <DropDownPicker
-                                open={open}
-                                value={value}
-                                items={items}
-                                setOpen={setOpen}
-                                setValue={setValue}
-                                setItems={setItems}
-                                style={{
-                                    borderColor: 'gray',
-                                    width: 310,
-                                    height: 40,
-                                    // borderWidth: 1,
-                                    paddingLeft: 15,
-                                    paddingRight: 20,
-                                    marginTop: 10,
-                                    // marginLeft: 20,
-                                    borderRadius: 10,
-                                    marginBottom: 10,
-                                    // marginLeft: 20
-                                }}
-                                containerStyle={{
-                                    width: 310,
-                                    marginLeft: 20
-                                }}
-                                placeholder='Chọn hoạt động'
-                            />
-                        </SafeAreaView>
-                    </View>
-                    {value === 'khac' ? <View >
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 5 }}>
-                        <MaterialIcons name="drive-file-rename-outline" size={24} color="#024f87" />
-                            <Text style={{ marginLeft: 5 }}>Tên hoạt động  <Text style={{ color: 'red' }}>*</Text></Text>
-                        </View>
-                        <TextInput
-                            style={{
+                            <View style={{
                                 borderColor: 'gray',
                                 width: 310,
                                 height: 40,
                                 borderWidth: 1,
-                                paddingLeft: 15,
-                                paddingRight: 20,
+                                paddingLeft: 10,
                                 marginTop: 10,
-                                marginBottom: 10,
-                                // marginLeft: 20,
+                                marginLeft: 20,
                                 borderRadius: 10,
-                                marginLeft: 20
-                            }}
-                            placeholder="Nhập tên hoạt động"
-                        />
-                    </View> : null}
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                <Picker
+                                    selectedValue={selectedValue}
+                                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                    pickerStyleType={{
+                                        paddingBottom: 10
+                                    }}
+                                >
+                                    <Picker.Item label="Chọn hoạt động" value="chonhd" />
+                                    <Picker.Item label="Mua lương thực" value="doan" />
+                                    <Picker.Item label="Phát quà" value="qua" />
+                                    <Picker.Item label="Thuê phương tiện" value="phuongtien" />
+                                    <Picker.Item label="Tiền trợ cấp" value="trocap" />
+                                    <Picker.Item label="Hoạt động khác" value="khac" />
+                                </Picker>
+                            </View>
+                        </View>
+                        {selectedValue === 'khac' ? <View >
+                            <Text>Mô tả hoạt động</Text>
+                            <TextInput
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    // height: 40,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    marginTop: 10,
+                                    marginBottom: 10,
+                                    // marginLeft: 20,
+                                    borderRadius: 10,
+                                    flexDirection: 'column',
+                                    justifyContent: 'flex-start'
+                                }}
+                                placeholder="Nhập mô tả hoạt động"
+                                multiline={true}
+                                numberOfLines={5}
+                            />
+                        </View> :
+                            selectedValue === 'doan' ?
+                                <View>
+                                    <View style={{
+                                        borderBottomWidth: 1,
+                                        borderBottomColor: 'gray',
+                                        borderStyle: 'dotted',
+                                        width: 310,
+                                        paddingBottom: 10,
+                                        marginLeft: 20,
+                                        marginTop: 10
+                                    }}>
+                                        <Text>Loại lương thực <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                        <View style={{
+                                            borderWidth: 1,
+                                            borderColor: 'gray',
+                                            width: 310,
+                                            marginTop: 10,
+                                            borderRadius: 10,
+                                            marginBottom: 10,
+                                            height: 40,
+                                            flexDirection: 'column',
+                                            justifyContent: 'center'
+                                        }}>
+                                            <Picker
+                                                selectedValue={selectedValue1}
+                                                onValueChange={(itemValue, itemIndex) => {
+                                                    setSelectedValue1(itemValue)
+                                                    if (itemValue === 'gao' || itemValue === 'rau') {
+                                                        setSelectedValue2('kg');
+                                                    } else if (itemValue === 'mi') {
+                                                        setSelectedValue2('thung');
+                                                    } else if (itemValue === 'trung') {
+                                                        setSelectedValue2('vi');
+                                                    }
+                                                }
+                                                }
+                                                pickerStyleType={{
+                                                    paddingBottom: 10
+                                                }}
+                                            >
+                                                <Picker.Item label="Chọn loại lương thực" value="loailuongthuc" />
+                                                <Picker.Item label="Gạo" value="gao" />
+                                                <Picker.Item label="Rau củ" value="rau" />
+                                                <Picker.Item label="Mì" value="mi" />
+                                                <Picker.Item label="Trứng" value="trung" />
+                                                <Picker.Item label="Loại khác" value="loaikhac" />
+                                            </Picker>
+                                        </View>
+                                        {selectedValue1 === 'loaikhac' ? <>
+                                            <Text>Hoạt động khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                            <TextInput
+                                                style={{
+                                                    borderColor: 'gray',
+                                                    width: 310,
+                                                    height: 40,
+                                                    borderWidth: 1,
+                                                    paddingLeft: 15,
+                                                    paddingRight: 20,
+                                                    marginTop: 10,
+                                                    // marginLeft: 20,
+                                                    borderRadius: 10
+                                                }}
+                                                placeholder="Nhập loại lương thực khác"
+                                            />
+                                        </> : null}
+                                        <View style={{
+                                            flexDirection: 'row'
+                                        }}>
+                                            <View>
+                                                <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                <TextInput
+                                                    style={{
+                                                        borderColor: 'gray',
+                                                        width: 150,
+                                                        height: 40,
+                                                        borderWidth: 1,
+                                                        paddingLeft: 15,
+                                                        paddingRight: 20,
+                                                        marginTop: 10,
+                                                        // marginLeft: 20,
+                                                        borderRadius: 10,
+                                                    }}
+                                                    placeholder="Nhập số lượng"
+                                                    keyboardType="numeric"
+                                                />
+                                            </View>
+                                            <View style={{
+                                                marginLeft: 10
+                                            }}>
+                                                <Text>Đơn vị <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                {selectedValue1 !== 'loaikhac' ? <>
+                                                    <View style={{
+                                                        borderWidth: 1,
+                                                        borderColor: 'gray',
+                                                        width: 150,
+                                                        marginTop: 10,
+                                                        borderRadius: 10,
+                                                        marginBottom: 10,
+                                                        height: 40,
+                                                        flexDirection: 'column',
+                                                        justifyContent: 'center'
+                                                    }}>
+                                                        <Picker
+                                                            selectedValue={selectedValue2}
+                                                            onValueChange={(itemValue, itemIndex) => setSelectedValue2(itemValue)}
+                                                            pickerStyleType={{
+                                                                paddingBottom: 10
+                                                            }}
+                                                        >
+                                                            <Picker.Item label="Chọn đơn vị" value="chondonvi" />
+                                                            <Picker.Item label="Kg" value="kg" />
+                                                            <Picker.Item label="Vỉ" value="vi" />
+                                                            <Picker.Item label="Thùng" value="thung" />
+                                                        </Picker>
+                                                    </View>
+                                                </> : <TextInput
+                                                    style={{
+                                                        borderColor: 'gray',
+                                                        width: 150,
+                                                        height: 40,
+                                                        borderWidth: 1,
+                                                        paddingLeft: 15,
+                                                        paddingRight: 20,
+                                                        marginTop: 10,
+                                                        // marginLeft: 20,
+                                                        borderRadius: 10,
+                                                    }}
+                                                    placeholder="Nhập đơn vị"
+                                                />}
+                                            </View>
+                                        </View>
+                                    </View>
+                                    {renderAllSubPlan()}
+
+                                </View> :
+                                selectedValue === 'phuongtien' ?
+                                    <View >
+                                        <View style={{
+                                            borderBottomWidth: 1,
+                                            borderBottomColor: 'gray',
+                                            width: 310,
+                                            paddingBottom: 10,
+                                            marginLeft: 20,
+                                            marginTop:10
+                                        }}>
+                                            <Text>Phương tiện <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                            <View style={{
+                                                borderWidth: 1,
+                                                borderColor: 'gray',
+                                                width: 310,
+                                                marginTop: 10,
+                                                borderRadius: 10,
+                                                marginBottom: 10,
+                                                height: 40,
+                                                flexDirection: 'column',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Picker
+                                                    selectedValue={selectedValueXe}
+                                                    onValueChange={(itemValue, itemIndex) => setSelectedValueXe(itemValue)}
+                                                    pickerStyleType={{
+                                                        paddingBottom: 10
+                                                    }}
+                                                >
+                                                    <Picker.Item label="Chọn phương tiện" value="chondonvi" />
+                                                    <Picker.Item label="Phương tiện di chuyển" value="dichuyen" />
+                                                    <Picker.Item label="Phương tiện vận chuyển" value="vanchuyen" />
+                                                </Picker>
+                                            </View>
+
+                                            <View>
+                                                {selectedValueXe === 'dichuyen' ?
+                                                    <>
+                                                        <View style={{
+                                                            flexDirection: 'row',
+
+                                                        }}>
+                                                            <View>
+                                                                <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <View style={{
+                                                                    borderWidth: 1,
+                                                                    borderColor: 'gray',
+                                                                    width: 150,
+                                                                    marginTop: 10,
+                                                                    borderRadius: 10,
+                                                                    marginBottom: 10,
+                                                                    height: 40,
+                                                                    flexDirection: 'column',
+                                                                    justifyContent: 'center'
+                                                                }}>
+                                                                    <Picker
+                                                                        selectedValue={selectedValueDiChuyen}
+                                                                        onValueChange={(itemValue, itemIndex) => setSelectedValueDiChuyen(itemValue)}
+                                                                        pickerStyleType={{
+                                                                            paddingBottom: 10
+                                                                        }}
+                                                                    >
+                                                                        <Picker.Item label="Chọn loại xe" value="loaidichuyen" />
+                                                                        <Picker.Item label="Xe 4 chỗ" value="4cho" />
+                                                                        <Picker.Item label="Xe 7 chỗ" value="7cho" />
+                                                                        <Picker.Item label="Xe 16 chỗ" value="16cho" />
+                                                                        <Picker.Item label="Xe 24 chỗ" value="24cho" />
+                                                                        <Picker.Item label="Xe khác" value="dichuyenkhac" />
+                                                                    </Picker>
+                                                                </View>
+                                                            </View>
+                                                            <View style={{
+                                                                marginLeft: 10,
+                                                                position: 'relative'
+                                                            }}>
+                                                                <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <TextInput
+                                                                    style={{
+                                                                        borderColor: 'gray',
+                                                                        width: 150,
+                                                                        height: 40,
+                                                                        borderWidth: 1,
+                                                                        paddingLeft: 15,
+                                                                        paddingRight: 70,
+                                                                        marginTop: 10,
+                                                                        // marginLeft: 20,
+                                                                        borderRadius: 10
+                                                                    }}
+                                                                    placeholder="Số lượng"
+                                                                    keyboardType="numeric"
+                                                                />
+                                                                <Text style={{
+                                                                    position: 'absolute',
+                                                                    right: 10,
+                                                                    top: 40
+                                                                }}>Chiếc</Text>
+                                                            </View>
+
+                                                        </View>
+                                                        {selectedValueDiChuyen === 'dichuyenkhac' ?
+                                                            <View style={{ marginBottom: 10 }}>
+                                                                <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <TextInput
+                                                                    style={{
+                                                                        borderColor: 'gray',
+                                                                        width: 310,
+                                                                        height: 40,
+                                                                        borderWidth: 1,
+                                                                        paddingLeft: 15,
+                                                                        paddingRight: 70,
+                                                                        marginTop: 10,
+                                                                        // marginLeft: 20,
+                                                                        borderRadius: 10
+                                                                    }}
+                                                                    placeholder="Nhập loại xe khác"
+                                                                />
+                                                            </View> : null
+                                                        }
+                                                    </>
+                                                    :
+                                                    <>
+
+                                                        <View>
+                                                            <Text>Loại xe <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                            <View style={{
+                                                                borderWidth: 1,
+                                                                borderColor: 'gray',
+                                                                width: 310,
+                                                                marginTop: 10,
+                                                                borderRadius: 10,
+                                                                marginBottom: 10,
+                                                                height: 40,
+                                                                flexDirection: 'column',
+                                                                justifyContent: 'center'
+                                                            }}>
+                                                                <Picker
+                                                                    selectedValue={selectedValueVanChuyen}
+                                                                    onValueChange={(itemValue, itemIndex) => setSelectedValueVanChuyen(itemValue)}
+                                                                    pickerStyleType={{
+                                                                        paddingBottom: 10
+                                                                    }}
+                                                                >
+                                                                    <Picker.Item label="Chọn loại xe" value="loaivanchuyen" />
+                                                                    <Picker.Item label="Xe tải thùng kín" value="thungkin" />
+                                                                    <Picker.Item label="Xe tải thùng phủ mui bạt" value="thung" />
+                                                                    <Picker.Item label="Xe tải đông lạnh" value="donglanh" />
+                                                                    <Picker.Item label="Xe khác" value="vanchuyenkhac" />
+
+                                                                </Picker>
+                                                            </View>
+                                                        </View>
+                                                        {selectedValueVanChuyen === 'vanchuyenkhac' ?
+                                                            <View style={{ marginBottom: 10 }}>
+                                                                <Text>Xe khác <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <TextInput
+                                                                    style={{
+                                                                        borderColor: 'gray',
+                                                                        width: 310,
+                                                                        height: 40,
+                                                                        borderWidth: 1,
+                                                                        paddingLeft: 15,
+                                                                        paddingRight: 70,
+                                                                        marginTop: 10,
+                                                                        // marginLeft: 20,
+                                                                        borderRadius: 10
+                                                                    }}
+                                                                    placeholder="Nhập loại xe khác"
+                                                                />
+                                                            </View> : null
+                                                        }
+                                                        <View style={{ flexDirection: 'row' }}>
+                                                            <View style={{
+                                                                position: 'relative'
+                                                            }}>
+                                                                <Text>Trọng tải <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <View style={{
+                                                                    borderWidth: 1,
+                                                                    borderColor: 'gray',
+                                                                    width: 160,
+                                                                    marginTop: 10,
+                                                                    borderRadius: 10,
+                                                                    marginBottom: 10,
+                                                                    height: 40,
+                                                                    flexDirection: 'column',
+                                                                    justifyContent: 'center'
+                                                                }}>
+                                                                    <Picker
+                                                                        selectedValue={selectedValueLoaiVanChuyen}
+                                                                        onValueChange={(itemValue, itemIndex) => setSelectedValueLoaiVanChuyen(itemValue)}
+                                                                        pickerStyleType={{
+                                                                            paddingBottom: 10
+                                                                        }}
+                                                                    >
+                                                                        <Picker.Item label="Chọn trọng tải xe" value="loaixevanchuyen" />
+                                                                        <Picker.Item label="0.5 - 1 Tấn" value="1tan" />
+                                                                        <Picker.Item label="2 - 6 Tấn" value="6tan" />
+                                                                        <Picker.Item label="7 - 15 Tấn" value="15tan" />
+                                                                        <Picker.Item label="Trên 15 tấn" value="tren15" />
+
+                                                                    </Picker>
+                                                                </View>
+                                                            </View>
+
+                                                            <View style={{
+                                                                marginLeft: 10,
+                                                                position: 'relative'
+                                                            }}>
+                                                                <Text>Số lượng <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                                <TextInput
+                                                                    style={{
+                                                                        borderColor: 'gray',
+                                                                        width: 130,
+                                                                        height: 40,
+                                                                        borderWidth: 1,
+                                                                        paddingLeft: 15,
+                                                                        paddingRight: 70,
+                                                                        marginTop: 10,
+                                                                        // marginLeft: 20,
+                                                                        borderRadius: 10
+                                                                    }}
+                                                                    placeholder="Số lượng"
+                                                                    keyboardType="numeric"
+                                                                />
+                                                                <Text style={{
+                                                                    position: 'absolute',
+                                                                    right: 10,
+                                                                    top: 40
+                                                                }}>Chiếc</Text>
+                                                            </View>
+                                                        </View>
+
+                                                    </>
+
+                                                }
+                                            </View>
+                                        </View>
+                                        {renderAllMove()}
+                                    </View>
+
+                                    :
+                                    selectedValue === 'qua' ?
+                                        <View>
+                                            <View style={{
+                                                position: 'relative',
+                                                marginBottom: 10
+                                            }}>
+                                                <Text>Số lượng phần quà<Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                                                <TextInput
+                                                    style={{
+                                                        borderColor: 'gray',
+                                                        width: 310,
+                                                        height: 40,
+                                                        borderWidth: 1,
+                                                        paddingLeft: 15,
+                                                        paddingRight: 70,
+                                                        marginTop: 10,
+                                                        // marginLeft: 20,
+                                                        borderRadius: 10
+                                                    }}
+                                                    placeholder="Nhập số lượng phần quà"
+                                                    keyboardType="numeric"
+                                                />
+                                                <Text style={{
+                                                    position: 'absolute',
+                                                    right: 10,
+                                                    top: 40
+                                                }}>Phần</Text>
+                                            </View>
+                                        </View>
+                                        : null
+                        }
+
+
+                        {selectedValue === 'doan' ?
+                            <View style={{ width: 310, marginBottom: 10, marginTop: 20, marginLeft: 20 }}>
+                                <Button title="Thêm loại lương thực" onPress={() => {
+                                    onAddSubPlan();
+                                }} />
+                            </View>
+                            : selectedValue === 'phuongtien' ?
+                                <View style={{ width: 310, marginBottom: 10, marginTop: 20, marginLeft: 20 }}>
+                                    <Button title="Thêm loại xe" onPress={() => {
+                                        onAddMove();
+                                    }} />
+                                </View> : null
+
+                        }
+                    </View>
 
                     <View>
                         <View style={{

@@ -151,6 +151,30 @@ export default function ActivityDetail1(props) {
                 <View style={{
                     display: 'flex',
                     flexDirection: 'row',
+                    paddingLeft: 20,
+                }}>
+                    <AntDesign name="filetext1" size={24} color="#0F6657" />
+                    <Text style={{
+                        fontWeight: 'bold',
+                        marginLeft: 5,
+                        fontSize: 15
+                    }}>Số lượng:</Text>
+                    <Text style={{
+                    marginLeft: 5,
+                    fontSize: 15,
+                    paddingRight: 20
+                }}>
+                    5 xe tải thùng loại 0.5 - 1 tấn</Text>
+
+                </View>
+                
+            </View>
+            <View style={{
+                paddingBottom: 10
+            }}>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
                     paddingLeft: 20
                 }}>
                     <AntDesign name="clockcircleo" size={24} color="#0F6657" />

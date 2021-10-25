@@ -78,7 +78,7 @@ export default function App() {
         <Stack.Screen
           name="BrowseActivityDetail"
           component={BrowseActivityDetail}
-          options={{ title: 'Chi tiết hoạt động chờ duyệt' }}
+          options={{ title: 'Chi tiết hoạt động' }}
         />
         <Stack.Screen
           name="PersonalInfo"

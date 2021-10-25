@@ -151,6 +151,30 @@ export default function ActivityDetail(props) {
                 <View style={{
                     display: 'flex',
                     flexDirection: 'row',
+                    paddingLeft: 20,
+                }}>
+                    <AntDesign name="filetext1" size={24} color="#0F6657" />
+                    <Text style={{
+                        fontWeight: 'bold',
+                        marginLeft: 5,
+                        fontSize: 15
+                    }}>Số lượng:</Text>
+                    <Text style={{
+                        marginLeft: 5,
+                        fontSize: 15,
+                        paddingRight: 20
+                    }}>
+                        1400 thùng mì.</Text>
+
+                </View>
+
+            </View>
+            <View style={{
+                paddingBottom: 10
+            }}>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
                     paddingLeft: 20
                 }}>
                     <AntDesign name="clockcircleo" size={24} color="#0F6657" />
@@ -189,7 +213,7 @@ export default function ActivityDetail(props) {
                     flexDirection: 'row',
                     paddingLeft: 20
                 }}>
-                    <MaterialIcons  name="attach-money" size={24} color="#0F6657" />
+                    <MaterialIcons name="attach-money" size={24} color="#0F6657" />
                     <Text style={{
 
                         marginLeft: 5,

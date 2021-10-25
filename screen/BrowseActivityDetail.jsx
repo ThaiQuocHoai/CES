@@ -202,7 +202,7 @@ export default function BrowseActivityDetail({ navigation }) {
 
                         marginLeft: 5,
                         fontSize: 15
-                    }}><Text style={{ fontWeight: 'bold', }}>Nguời đăng: </Text>
+                    }}><Text style={{ fontWeight: 'bold', }}>Người phụ trách: </Text>
                         Lê Tuấn Vũ</Text>
                 </View>
 
