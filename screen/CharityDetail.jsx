@@ -253,7 +253,282 @@ export default function CharityDetail({ navigation, route }) {
             </Text>
           </View>
           <View>
-            <StepProgress navigation={navigation} />
+            <Pressable onPress={() => {
+              navigation.push('detailmain1');
+            }} style={[styles.viewStyle, { marginBottom: 10, marginTop: 10 }]}>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Hoạt động: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Thuê phương tiện</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số lượng - Loại phương tiện: </Text>
+                <View>
+                  <Text style={{ fontWeight: 'bold' }}>5 chiếc - Xe tải 1 tấn</Text>
+                </View>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số tiền dự tính: </Text>
+                <Text style={{ fontWeight: 'bold' }}>10,000,000 VNĐ</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày bắt đầu: </Text>
+                <Text style={{ fontWeight: 'bold' }}>18/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày kết thúc: </Text>
+                <Text style={{ fontWeight: 'bold' }}>19/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                // paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Người phụ trách: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Nguyễn Văn An</Text>
+              </View>
+            </Pressable>
+            <Pressable onPress={() => {
+              navigation.push('detailmain2');
+            }} style={[styles.viewStyle, { marginBottom: 10, marginTop: 10 }]}>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Hoạt động: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Mua lương thực</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số lượng - Loại lương thực: </Text>
+                <View>
+                  <Text style={{ fontWeight: 'bold' }}>1400 thùng - Mì</Text>
+                  <Text style={{ fontWeight: 'bold' }}>1000 kg - Gạo</Text>
+                </View>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số tiền dự tính: </Text>
+                <Text style={{ fontWeight: 'bold' }}>190,000,000 VNĐ</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày bắt đầu: </Text>
+                <Text style={{ fontWeight: 'bold' }}>19/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày kết thúc: </Text>
+                <Text style={{ fontWeight: 'bold' }}>21/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                // paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Người phụ trách: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Đỗ Thị Thảo</Text>
+              </View>
+            </Pressable>
+            <Pressable onPress={() => {
+              navigation.push('detailmain');
+            }} style={[styles.viewStyle, { marginBottom: 200, marginTop: 10 }]}>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Hoạt động: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Phát quà</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số lượng: </Text>
+                <View>
+                  <Text style={{ fontWeight: 'bold' }}>100 phần quà</Text>
+                </View>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Số tiền dự tính: </Text>
+                <Text style={{ fontWeight: 'bold' }}>190,000,000 VNĐ</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Địa điểm: </Text>
+                <Text style={{ fontWeight: 'bold' }}>UBND phường 18 - Quận 4</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày bắt đầu: </Text>
+                <Text style={{ fontWeight: 'bold' }}>22/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                borderBottomColor: 'lightgray',
+                borderBottomWidth: 1,
+                borderStyle: 'dashed',
+                paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Ngày kết thúc: </Text>
+                <Text style={{ fontWeight: 'bold' }}>23/09/2021</Text>
+              </View>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10,
+                // paddingBottom: 10,
+                marginRight: 20,
+                marginLeft: 20
+              }}>
+                <Text>Người phụ trách: </Text>
+                <Text style={{ fontWeight: 'bold' }}>Đỗ Thị Thảo</Text>
+              </View>
+            </Pressable>
           </View>
         </View>
       </ScrollView>
