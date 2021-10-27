@@ -51,7 +51,7 @@ export default function BrowseActivity({ navigation }) {
                 <View>
                     <Text><Text style={{ fontWeight: 'bold' }}>Hoạt động:</Text> Mua lương thực</Text>
                     <Text><Text style={{ fontWeight: 'bold' }}>Thời gian:</Text> 7:30AM - 05/10/2021</Text>
-                    <Text><Text style={{ fontWeight: 'bold' }}>Ngày phụ trách:</Text> Đỗ Thị Thảo</Text>
+                    <Text><Text style={{ fontWeight: 'bold' }}>Người phụ trách:</Text> Đỗ Thị Thảo</Text>
                 </View>
             </Pressable>
             <Pressable style={{
@@ -74,7 +74,7 @@ export default function BrowseActivity({ navigation }) {
                 <View>
                     <Text><Text style={{ fontWeight: 'bold' }}>Hoạt động:</Text> Mua vật dụng đóng gói</Text>
                     <Text><Text style={{ fontWeight: 'bold' }}>Thời gian:</Text> 11:30AM - 05/10/2021</Text>
-                    <Text><Text style={{ fontWeight: 'bold' }}>Ngày phụ trách:</Text> Lê Thành Tín</Text>
+                    <Text><Text style={{ fontWeight: 'bold' }}>Người phụ trách:</Text> Lê Thành Tín</Text>
                 </View>
             </Pressable>
             <Pressable style={{
@@ -97,7 +97,7 @@ export default function BrowseActivity({ navigation }) {
                 <View>
                     <Text><Text style={{ fontWeight: 'bold' }}>Hoạt động:</Text> Thuê phương tiện</Text>
                     <Text><Text style={{ fontWeight: 'bold' }}>Thời gian:</Text> 5:00AM - 06/10/2021</Text>
-                    <Text><Text style={{ fontWeight: 'bold' }}>Ngày phụ trách:</Text> Nguyễn Văn An</Text>
+                    <Text><Text style={{ fontWeight: 'bold' }}>Người phụ trách:</Text> Nguyễn Văn An</Text>
                 </View>
             </Pressable>
 
