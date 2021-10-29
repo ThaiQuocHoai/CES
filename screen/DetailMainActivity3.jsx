@@ -9,24 +9,24 @@ const { width, height } = Dimensions.get('window');
 const labels = ["Cart"];
 const labels3 = ["Cart"];
 
-export default function DetailMainActivity2({ navigation }) {
+export default function DetailMainActivity3({ navigation }) {
 
     const data2 = [
         {
-            label: 'Mua 1400 thùng mì',
-            dateTime: '5:00AM 19/09/2021',
-            status: 140000000,
+            label: 'Phát 60 phần quà',
+            dateTime: '8:00AM 22/09/2021',
+            status: 30000000,
             owner: 'Đỗ Thị Thảo',
-            link: 'ActivityDetail'
+            link: 'ActivityDetail2'
         },
     ]
     const data3 = [
         {
-            label: 'Mua 1000kg gạo',
-            dateTime: '7:00AM 20/09/2021',
-            status: 50000000,
+            label: 'Phát 40 phần quà',
+            dateTime: '2:00PM 22/09/2021',
+            status: 20000000,
             owner: 'Đỗ Thị Thảo',
-            link: 'ActivityDetail'
+            link: 'ActivityDetail2'
         },
     ]
 
@@ -87,7 +87,7 @@ export default function DetailMainActivity2({ navigation }) {
                     renderLabel={({ position, stepStatus, label, crntPosition }) => {
                         return (
                             <Pressable style={styles.lblContainer} onPress={() => {
-                                navigation.push("ActivityDetail")
+                                navigation.push("ActivityDetail2")
                             }}>
                                 <View style={{
                                     display: 'flex',
@@ -168,7 +168,7 @@ export default function DetailMainActivity2({ navigation }) {
                     renderLabel={({ position, stepStatus, label, crntPosition }) => {
                         return (
                             <Pressable style={styles.lblContainer} onPress={() => {
-                                navigation.push("ActivityDetail")
+                                navigation.push("ActivityDetail2")
                             }}>
                                 <View style={{
                                     display: 'flex',

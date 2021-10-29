@@ -24,6 +24,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-bottom-modal": "^0.5.6",
     "react-native-date-picker": "^4.0.0",
+    "react-native-document-picker": "^7.1.1",
     "react-native-dropdown-picker": "^5.1.28",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-crop-picker": "^0.36.4",
@@ -39,7 +40,8 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-textinput-effects": "^0.6.2",
     "react-native-web": "~0.13.12",
-    "react-spring": "^9.2.4"
+    "react-spring": "^9.2.4",
+    "expo-document-picker": "~9.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

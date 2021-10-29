@@ -429,7 +429,7 @@ export default function CharityDetail({ navigation, route }) {
               </View>
             </Pressable>
             <Pressable onPress={() => {
-              navigation.push('detailmain');
+              navigation.push('detailmain3');
             }} style={[styles.viewStyle, { marginBottom: 200, marginTop: 10 }]}>
               <View style={{
                 flexDirection: 'row',
@@ -473,7 +473,7 @@ export default function CharityDetail({ navigation, route }) {
                 marginLeft: 20
               }}>
                 <Text>Số tiền dự tính: </Text>
-                <Text style={{ fontWeight: 'bold' }}>190,000,000 VNĐ</Text>
+                <Text style={{ fontWeight: 'bold' }}>50,000,000 VNĐ</Text>
               </View>
               <View style={{
                 flexDirection: 'row',
@@ -544,7 +544,7 @@ export default function CharityDetail({ navigation, route }) {
           borderRadius: 50,
         }}
         onPress={() => {
-          navigation.push("CreateSubActivity");
+          navigation.push("CreateRoute");
         }}
       >
         <Text

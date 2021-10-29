@@ -36,7 +36,7 @@ const customStyles = {
 
     const data = [
         {
-            label: 'Thuê phương tiện',
+            label: 'Thuê 5 xe tải loại 1 tấn',
             dateTime: '1:00PM 18/09/2021',
             status: 10000000,
             owner: 'Nguyễn Văn An',
@@ -45,7 +45,7 @@ const customStyles = {
     ]
 
     return (
-        <ScrollView>
+        <ScrollView contentContainerStyle={{position: 'relative', height: '100%'}}>
             <View style={styles.viewStyle}>
                     {/* <Pressable
                         onPress={() => {
@@ -57,10 +57,8 @@ const customStyles = {
                     {/* </View> */}
                 </View>
                 <View style={{
-                    paddingTop: 20,
-                    paddingBottom: 20,
                     backgroundColor: '#fff',
-                    height: 200,
+                    height: 150,
                     shadowColor: "#000",
                     shadowOffset: {
                         width: 0,
@@ -71,10 +69,9 @@ const customStyles = {
 
                     elevation: 11,
                     borderRadius: 10,
-                    paddingLeft: 20,
                     marginLeft: 30,
                     marginRight: 30,
-                    marginBottom: 10
+                    marginBottom: 10,
                 }}>
                     <StepIndicator
                         customStyles={customStyles}
@@ -158,7 +155,29 @@ const customStyles = {
                         stepCount='1'
                     />
                 </View>
+
+                <Pressable style={{
+                position: 'absolute',
+                bottom: 30,
+                right: 30,
+                elevation: 99,
+                backgroundColor: '#ff8224',
+                width: 60,
+                height: 60,
+                borderRadius: 50
+            }} onPress={() => {
+                navigation.push('CreateSubActivity')
+            }}>
+                <Text style={{
+                    textAlign: 'center',
+                    lineHeight: 60,
+
+                }}><AntDesign style={{
+                    fontWeight: 'bold'
+                }} name="plus" size={35} color="white" /></Text>
+            </Pressable>
         </ScrollView>
+        
     )
 }
 
@@ -171,7 +190,7 @@ const styles = StyleSheet.create({
         // marginTop: 20,
         paddingLeft: 20,
         paddingRight: 35,
-        width: width - 100,
+        width: width - 65,
         // marginBottom: 30
     },
     viewStyle: {

@@ -21,6 +21,9 @@ import ActivityDetail1 from "./screen/ActivityDetail1";
 import StepProgress from "./component/StepProgress";
 import DetailMainActivity1 from "./screen/DetailMainActivity1";
 import DetailMainActivity2 from "./screen/DetailMainActivity2";
+import CreateRoute from "./screen/CreateRoute";
+import DetailMainActivity3 from "./screen/DetailMainActivity3";
+import ActivityDetail2 from "./screen/ActivityDetail2";
 
 const Stack = createStackNavigator();
 
@@ -69,6 +72,11 @@ export default function App() {
           options={{ title: 'Chi tiết hoạt động' }}
         />
         <Stack.Screen
+          name="ActivityDetail2"
+          component={ActivityDetail2}
+          options={{ title: 'Chi tiết hoạt động' }}
+        />
+        <Stack.Screen
           name="ActivityDetail1"
           component={ActivityDetail1}
           options={{ title: 'Chi tiết hoạt động' }}
@@ -76,17 +84,27 @@ export default function App() {
         <Stack.Screen
           name="detailmain1"
           component={DetailMainActivity1}
-          options={{ title: 'Chi tiết hoạt động' }}
+          options={{ title: 'Danh sách hoạt động' }}
         />
         <Stack.Screen
           name="detailmain2"
           component={DetailMainActivity2}
-          options={{ title: 'Chi tiết hoạt động' }}
+          options={{ title: 'Danh sách hoạt động' }}
+        />
+        <Stack.Screen
+          name="detailmain3"
+          component={DetailMainActivity3}
+          options={{ title: 'Danh sách hoạt động' }}
         />
         <Stack.Screen
           name="CreateActivity"
           component={CreateActivity}
           options={{ title: 'Tạo chiến dịch' }}
+        />
+        <Stack.Screen
+          name="CreateRoute"
+          component={CreateRoute}
+          options={{ title: 'Tạo hoạt động của chiến dịch' }}
         />
         <Stack.Screen
           name="BrowseActivityDetail"

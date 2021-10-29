@@ -5,17 +5,16 @@ import moment from 'moment';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as ImagePicker from 'expo-image-picker';
 import RBSheet from "react-native-raw-bottom-sheet";
-import * as DocumentPicker from 'expo-document-picker';
 
-export default function CreateSubActivity({ navigation }) {
+export default function CreateRoute({ navigation }) {
     const refRBSheet = useRef();
-
-    const [dcResult, setDcResult] = useState(null);
 
     const day = new Date();
 
     const [isDatePickerVisible2, setDatePickerVisibility2] = useState(false);
     const [dateChoose2, setDateChoose2] = useState(day)
+    const [isDatePickerVisible3, setDatePickerVisibility3] = useState(false);
+    const [dateChoose3, setDateChoose3] = useState(day)
 
 
 
@@ -29,6 +28,17 @@ export default function CreateSubActivity({ navigation }) {
     const handleConfirm2 = (date) => {
         setDateChoose2(date);
         hideDatePicker2();
+    };
+    const showDatePicker3 = () => {
+        setDatePickerVisibility3(true);
+    };
+
+    const hideDatePicker3 = () => {
+        setDatePickerVisibility3(false);
+    };
+    const handleConfirm3 = (date) => {
+        setDateChoose3(date);
+        hideDatePicker3();
     };
 
     const [image, setImage] = useState(null);
@@ -954,8 +964,6 @@ export default function CreateSubActivity({ navigation }) {
                                 : null
                 }
 
-
-
                 {selectedValue === 'doan' ?
                     <View style={{ width: 310, marginBottom: 10, marginTop: 20 }}>
                         <Button title="Thêm loại lương thực" onPress={() => {
@@ -993,7 +1001,7 @@ export default function CreateSubActivity({ navigation }) {
                 }}>
 
                     <View>
-                        <Text>Thời gian <Text style={{ color: '#d32f2f' }}>*</Text></Text>
+                        <Text>Thời gian bắt đầu <Text style={{ color: '#d32f2f' }}>*</Text></Text>
                         <Pressable onPress={showDatePicker2}>
                             <Text style={{
                                 borderWidth: 1,
@@ -1739,94 +1747,96 @@ export default function CreateSubActivity({ navigation }) {
                         }
                     </View>
 
-                    {
-                        selectedValue === 'qua' || selectedValue === 'trocap' ?
-                            <View>
-                                <View style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    paddingTop: 10
-                                }}>
-                                    <AntDesign name="book" size={24} color="#024f87" />
-                                    <Text>Danh sách người nhận <Text style={{ color: 'red' }}>*</Text></Text>
-                                </View>
-
-
-                                {
-                                    dcResult?  <Text style={{
-                                        textAlign: 'center',
-                                        margin: 10,
-                                        color: '#000'
-                                    }}>{dcResult?.name}</Text> : null
-                                }
-
-
-
-                                <Pressable style={{
-                                    margin: 10
-                                }} onPress={async () => {
-                                    setDcResult (await DocumentPicker.getDocumentAsync());
-                                    console.log(dcResult);
-                                }}>
-
-                                    <Text style={{
-                                        textAlign: 'center',
-                                        textDecorationStyle: 'solid',
-                                        textDecorationColor: 'black',
-                                    }}><AntDesign name="upload" size={15} color="black" />  {!dcResult ? ' Chọn tệp' : ' Chọn tệp khác'}</Text>
-                                </Pressable>
-
-                               
-
-                            </View> : null
-                    }
-
-                    <View>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            paddingTop: 10
-                        }}>
-                            <EvilIcons name="location" size={24} color="#024f87" />
-                            <Text>Địa điểm thực hiện hoạt động <Text style={{ color: 'red' }}>*</Text></Text>
+                    {selectedValue === 'qua' ?
+                        <View>
+                            <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                paddingTop: 10
+                            }}>
+                                <EvilIcons name="location" size={24} color="#024f87" />
+                                <Text>Địa điểm thực hiện hoạt động <Text style={{ color: 'red' }}>*</Text></Text>
+                            </View>
+                            <TextInput
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    height: 40,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    marginTop: 10,
+                                    marginLeft: 20,
+                                    borderRadius: 10
+                                }}
+                                placeholder="Nhập địa điểm"
+                            />
                         </View>
-                        <TextInput
-                            style={{
-                                borderColor: 'gray',
-                                width: 310,
-                                height: 40,
-                                borderWidth: 1,
-                                paddingLeft: 15,
-                                paddingRight: 20,
-                                marginTop: 10,
-                                marginLeft: 20,
-                                borderRadius: 10
-                            }}
-                            placeholder="Nhập địa điểm"
-                        />
-                    </View>
+                        : null}
                     <View style={{ marginTop: 10 }}>
                         <View style={{
                             flexDirection: 'row',
                             alignItems: 'center'
                         }}>
                             <MaterialIcons name="attach-money" size={24} color="#024f87" />
-                            <Text>Tổng số tiền đã chi <Text style={{ color: 'red' }}>*</Text></Text>
+                            <Text>Số tiền dự tính <Text style={{ color: 'red' }}>*</Text></Text>
                         </View>
-                        <TextInput
-                            style={{
+                        <View style={{ position: 'relative' }}>
+                            <TextInput
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    height: 40,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    marginTop: 10,
+                                    marginLeft: 20,
+                                    borderRadius: 10
+                                }}
+                                placeholder="Nhập tổng số tiền"
+                                keyboardType="numeric"
+                            />
+                            <Text style={{
+                                position: 'absolute',
+                                right: 40,
+                                top: 20
+                            }}>VNĐ</Text>
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <View style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginLeft: 5
+                        }}>
+                            <AntDesign name="clockcircleo" size={20} color="#024f87" />
+                            <Text style={{ marginLeft: 5 }}>Thời gian bắt đầu <Text style={{ color: 'red' }}>*</Text></Text>
+                        </View>
+                        <Pressable onPress={showDatePicker3}>
+                            <Text style={{
+                                borderWidth: 1,
                                 borderColor: 'gray',
                                 width: 310,
                                 height: 40,
-                                borderWidth: 1,
-                                paddingLeft: 15,
-                                paddingRight: 20,
-                                marginTop: 10,
+                                borderRadius: 10,
+                                paddingTop: 10,
+                                color: '#000',
+                                // textAlign: 'center',
                                 marginLeft: 20,
-                                borderRadius: 10
-                            }}
-                            placeholder="Nhập tổng số tiền"
-                            keyboardType="numeric"
+                                marginTop: 10,
+                                paddingLeft: 15
+                            }}>
+                                {moment(dateChoose3).format('hh:mmA ')}
+                                - {moment(dateChoose3).format('DD/MM/YYYY ')}
+                            </Text>
+                        </Pressable>
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible3}
+                            mode="datetime"
+                            onConfirm={handleConfirm3}
+                            onCancel={hideDatePicker3}
+                            date={dateChoose3}
                         />
                     </View>
                     <View style={{ marginTop: 10 }}>
@@ -1836,7 +1846,7 @@ export default function CreateSubActivity({ navigation }) {
                             marginLeft: 5
                         }}>
                             <AntDesign name="clockcircleo" size={20} color="#024f87" />
-                            <Text style={{ marginLeft: 5 }}>Thời gian <Text style={{ color: 'red' }}>*</Text></Text>
+                            <Text style={{ marginLeft: 5 }}>Thời gian kết thúc <Text style={{ color: 'red' }}>*</Text></Text>
                         </View>
                         <Pressable onPress={showDatePicker2}>
                             <Text style={{
@@ -1852,7 +1862,7 @@ export default function CreateSubActivity({ navigation }) {
                                 marginTop: 10,
                                 paddingLeft: 15
                             }}>
-                                Vào lúc {moment(dateChoose2).format('hh:mmA ')}
+                                {moment(dateChoose2).format('hh:mmA ')}
                                 - {moment(dateChoose2).format('DD/MM/YYYY ')}
                             </Text>
                         </Pressable>
@@ -1866,7 +1876,6 @@ export default function CreateSubActivity({ navigation }) {
                     </View>
                     <View style={{
                         marginTop: 10,
-                        paddingBottom: 30
                     }}>
                         <View style={{
                             flexDirection: 'row',
@@ -1898,71 +1907,41 @@ export default function CreateSubActivity({ navigation }) {
                                 placeholder="Nhập mô tả chi tiết"
                             />
                         </View>
+
+                    </View>
+                    <View style={{
+                        marginTop: 10,
+                        paddingBottom: 30
+                    }}>
                         <View style={{
-                            marginBottom: 10
+                            flexDirection: 'row',
+                            alignItems: 'center'
                         }}>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <AntDesign name="camerao" size={24} color="#024f87" />
-                                <Text style={{
-                                    marginLeft: 5
-                                }}>
-                                    Hình ảnh  <Text style={{ color: 'red' }}>*</Text>
-                                </Text>
-                            </View>
-                            <View style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderStyle: 'dashed',
-                                borderWidth: 1,
-                                borderColor: 'gray',
-                                borderRadius: 1,
-                                height: 130,
-                                marginTop: 15,
-                                marginRight: 10
-                            }}>
-                                <Pressable onPress={() => refRBSheet.current.open()} style={{
-                                    flex: 1,
-                                    flexDirection: 'row',
-                                    alignItems: 'center'
-                                }} >
-                                    <MaterialIcons name="file-upload" size={40} color="gray" />
-                                    <Text style={{
-                                        marginLeft: 5,
-                                        color: 'gray',
-                                    }}>{image ? 'Chọn ảnh khác' : 'Thêm hình ảnh'}</Text>
-                                </Pressable>
-                            </View>
-                            {image && <Image source={{ uri: image }} style={{ width: 350, height: 200, marginTop: 10 }} />}
-                            <View
-                                style={{
-                                    flex: 1,
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    backgroundColor: "#000"
-                                }}
-                            >
-                                <RBSheet
-                                    ref={refRBSheet}
-                                    height={270}
-                                    closeOnDragDown={true}
-                                    closeOnPressMask={false}
-                                    customStyles={{
-                                        wrapper: {
-                                            backgroundColor: "transparent"
-                                        },
-                                        draggableIcon: {
-                                            backgroundColor: "#000"
-                                        }
-                                    }}
-                                    closeOnPressMask={true}
-                                >
-                                    <ModalPicker />
-                                </RBSheet>
-                            </View>
+                            <AntDesign name="user" size={24} color="#024f87" />
+                            <Text style={{ marginLeft: 5 }}>Người phụ trách <Text style={{ color: 'red' }}>*</Text></Text>
                         </View>
+                        <View style={{
+                            alignItems: 'center'
+                        }}>
+                            <TextInput
+                                style={{
+                                    borderColor: 'gray',
+                                    width: 310,
+                                    height: 40,
+                                    borderWidth: 1,
+                                    paddingLeft: 15,
+                                    paddingRight: 20,
+                                    // marginLeft: 20,
+                                    borderRadius: 10,
+                                    marginTop: 10,
+                                }}
+                                placeholder="Nhập người phụ trách"
+                            />
+                        </View>
+
                     </View>
                 </View>
+
                 <View style={{
                     display: 'flex',
                     alignItems: 'center',
